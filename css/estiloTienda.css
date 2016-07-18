@@ -1,0 +1,387 @@
+#contenedorTienda{
+	display: flex;
+	flex-flow: row;
+	position: relative;
+}
+
+#menuLateral{
+	background-color: #2d2d2d;
+	opacity: 0.94;
+	/*border-radius: 2px;*/
+	padding: 10px;
+	height: auto;
+}
+#menuLateral > ul{
+	list-style: none;
+	padding: 0px;
+}
+
+/*#menuLateral > ul >li.cat-parent > a:after{
+	content: "";
+    border-color: transparent #fff;
+    border-style: solid;
+    border-width: 0.35em 0 0.35em 0.45em;
+    display: block;
+    height: 0;
+    width: 0;
+    left: -1em;
+    top: 0.9em;
+    position: relative;
+    float: right;
+}*/
+
+#contenedorProductos{
+	flex-grow: 20;
+}
+#contenedorProductos > .row{
+	display: flex;
+	justify-content: center;
+	flex-flow: column;
+
+}
+
+.product-categories > .cat-item > a{
+	font-family: "Abreu", Fallback, sans-serif;
+}
+
+.children > .cat-item > a{
+	font-family: "Futura", Fallback, sans-serif;
+}
+
+.product{
+	text-align: center;
+	list-style: none;
+	background-color: #fff;
+	/*margin-bottom: 40px;
+	width: auto;
+	margin-left: 80px;*/
+}
+#divPopUp > .product {
+	padding-bottom: 30px;
+}
+
+.products{
+	/*display: flex;
+	justify-content: center;*/
+	margin: 0px;
+	padding: 0px;
+}
+.page-title{
+	text-align: center;
+	margin-bottom: 50px;
+	font-family: "Abreu", Fallback, sans-serif;
+}
+.cat-parent > a{
+	color:#fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: 19px;
+
+}
+.flecha{
+	border-color: transparent #fff;
+    border-style: solid;
+    border-width: 0.40em 0 0.40em 0.50em;
+    height: 0;
+    width: 0;
+    display: inline-block;
+    margin:3px 10px 3px 10px;
+    cursor: pointer;
+}
+.children{
+	padding: 0px;
+}
+.children > .cat-item{
+	list-style: none;
+}
+
+.children > .cat-item > a{
+	font-size: 19px;
+	color:#fff;
+	text-decoration: none;
+	text-transform: uppercase;
+	opacity: .5;
+}
+.activo{
+	border-color:#fff transparent;
+	border-width:0.40em 0.40em 0 0.50em; 
+}
+
+#contenedorMenu{
+	display: flex;
+	flex-flow: row;
+	flex-grow: 1;
+	position: absolute;
+	top: 25%;
+	z-index: 1;
+	justify-content: center;
+	vertical-align: middle;
+	max-height: 100%;
+	overflow-y: auto;
+}
+.current-cat > a{
+	color: #00beee;
+}
+#imgCatalogo{
+	max-width: 60px;
+	vertical-align: middle;
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+
+}
+#imgCatalogo > img{
+	max-width: 80%;
+	cursor: pointer;
+}
+
+/*Estilos para maquillar imperfecciones ante el cliente:*/
+
+p.woocommerce-result-count, form.woocommerce-ordering{
+	display: none;
+}
+
+/*
+Estilos para ver un mejor acomodo de productos en catalogo
+
+*/
+
+/*.contenedorProducto{
+	display: inline-block;
+}*/
+
+div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.contenedorProducto > a.add_to_cart_button{
+	display: none;
+}
+
+
+/*
+	Estilos para el popUp del producto
+*/
+
+#myModal{
+	text-transform: uppercase;
+	padding: 0px !important;
+}
+#productInfoH2{
+	text-align: right;
+	margin-bottom: 20px;
+	color:#babbc0;
+	width: 70%;
+	text-transform: uppercase;
+	font-family: "Abreu", Fallback, sans-serif;
+
+}
+#productInfoEstiloH2{
+	font-family: "Abreu", Fallback, sans-serif;
+	text-transform: uppercase;
+	margin: 33px 0px;
+}
+
+#productInfoImg, #productInfoEstilo,#productInfoExtras{
+	text-align: center;
+}
+#productInfoExtras{
+	margin-top: 50px;
+}
+#productInfoExtras span{
+	font-family: "Abreu", Fallback, sans-serif;
+}
+
+.circle-talla > span{
+	font-family: "Futura", Fallback, sans-serif !important;	
+}
+
+#precio h4, #precio span{
+	font-family: "Fututra", Fallback, sans-serif !important;
+	font-style: italic;
+	color:#808082;
+}
+
+
+/*
+	Estilos para los circulos de colores
+*/
+#productInfoColores, #productInfoTallas, #precio{
+	
+	margin-bottom: 25px;
+}
+#tallas,#colores{
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	margin-top: 15px;
+}
+#cantidad{
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	text-align: center;
+	margin:0px;
+	margin-bottom: 15px;
+}
+#cantidad>input{
+	max-width: 30%;
+	justify-content: center;
+	text-align: center;
+	/*left: 25%;*/
+	position: relative;
+	margin:15px 0px;
+}
+#productInfoTallas > span, #productInfoColores > span, #productInfoCantidad>span{
+	border-bottom: 2px solid #323232; 
+	padding: 0px 10px;
+	margin-bottom: 15px;
+	/*font-weight: bold;*/
+}
+
+.circle > span{
+	color: #cccccc;
+}
+
+.circle{
+ border: 2px solid #cccccc;
+ height: 41px;
+ width: 41px;
+ -moz-border-radius:75px;
+ -webkit-border-radius: 75px;
+ border-radius: 75px;
+ margin-right: 10px;
+ cursor: pointer;
+ display: flex;
+ flex-flow: column;
+ justify-content: center;
+}
+#blanco{
+	background-color: #fff;
+}
+#verde{
+	background-color: #33cc33;
+}
+#amarillo{
+	background-color: #ffff99;
+}
+#naranja{
+	background-color: #ff9933;
+}
+#rosa{
+	background-color: #ff6699;
+}
+
+#contentInfo{
+	margin-bottom: 50px;
+}
+
+#opaco{
+	width: 100%;
+	display: none;
+	position: absolute;
+	height: 90%;
+	top: 110px;
+	background-color: rgba(227,227,227,.8);
+	z-index: 10;
+}
+
+.div-detalle{
+	background-color: #fff;
+	z-index: 15;
+}
+
+#productInfoImg > #principal{
+	top:0 !important;
+}
+
+#i-cerrarDetalles{
+	font-size: 32px;
+	width: 30%;
+	justify-content: flex-end;
+	display: flex;
+	padding: 15px;
+	cursor: pointer;
+}
+
+/*backgrounds para los estilos de prenda*/
+.img-estilo{
+	width: 70px;
+	height: 90px;
+	background-size: 100%;
+	margin: auto;
+	cursor: pointer;
+	opacity: .5;
+}
+.img-estilo > i{
+	margin-left: 70px;
+	color:#ED0C5C;
+	opacity: 0;
+}
+
+#estilos{
+	text-transform: uppercase;
+}
+
+#celfie{
+background-image: url('../img/estilos/');
+}
+#azara{
+background-image: url('../img/estilos/azara.png');
+}
+#chic{
+background-image: url('../img/estilos/chic.png');
+}
+#jazz{
+background-image: url('../img/estilos/jazz.png');
+}
+#trendy{
+background-image: url('../img/estilos/trendy.png');
+}
+#kim{
+background-image: url('../img/estilos/kim.png');
+}
+#celice{
+background-image: url('../img/estilos/celice.png');
+}
+#guetta{
+background-image: url('../img/estilos/guetta.png');
+}
+#celfie-nina{
+background-image: url('../img/estilos/');
+}
+#jazz-nina{
+background-image: url('../img/estilos/');
+}
+#celine-nina{
+background-image: url('../img/estilos/');
+}
+#guetta-nina{
+background-image: url('../img/estilos/');
+}
+#ducky{
+background-image: url('../img/estilos/ducky.png');
+}
+
+#div-detalle > * {
+	text-transform: uppercase;
+}
+
+div.loopDeContentProduct > a > img{
+	max-width: 100%;
+}
+
+div.loopDeContentProduct{
+	width: 70%;
+	margin:auto;
+}
+
+div.modal-dialog{
+	width: 100%;
+}
+
+#showDetails > div > #contentInfo{
+	margin-bottom: 0px;
+}
+
+
+/*div.product-type-variable img{
+	max-width: 159px;
+	max-height: 206px;
+}*/

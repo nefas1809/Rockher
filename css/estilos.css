@@ -1,0 +1,649 @@
+*{
+	outline: none;
+}
+
+html,body{
+	/*height: 100%;*/
+	margin: 0 !important;
+	padding: 0px !important;
+}
+html{
+	margin-top: 0px !important;
+}
+body{
+	overflow-x: hidden;
+	padding: 0px;
+	margin:0px;
+}
+
+a{
+	outline: none;
+	-moz-outline-style:none;
+}
+a:active, a:hover{
+	outline: none;
+	-moz-outline-style:none;
+	border:none;
+}
+
+:active, :focus{
+	outline: none;
+	-moz-outline-style:none;
+}
+
+li:active, li, li:hover{
+	outline: none;
+	border: none;
+}
+.navbar-inverse{
+	opacity: 0.8;
+	margin: 0px;
+}
+.navbar-inner{
+	padding-right: 20px !important;
+	padding-left: 10px !important;
+}
+
+#wpadminbar{
+	display: none;
+}
+.nav{
+	float: right;
+}
+.navbar-fixed-top{
+	margin-bottom: 0px;
+}
+h1:before{
+	content: "";
+	border-color: transparent #000;
+    border-style: solid;
+    border-width: 0.16em 0 0.16em 0.19em;
+    height: 0;
+    width: 0;
+    display: inline-block;
+    margin:5px 10px 3px 10px;
+}
+h1:after{
+	content: "";
+	border-color: transparent #000 transparent transparent;
+    border-style: solid;
+    border-width: 0.16em 0.19em 0.16em 0;
+    height: 0;
+    width: 0;
+    display: inline-block;
+    margin:5px 10px 3px 10px;
+}
+#principal{
+	width: 100%;
+	top: 0px;
+	position: relative;
+}
+#galeria{
+	margin-left:0;
+	margin-right: 0; 
+}
+
+.wonderpluginslider,#wonderpluginslider-1{
+	width: 100%;
+}
+
+.navbar-inverse > .container{
+	width: 100%;
+	padding: 0px;
+}
+.container > .navbar-header, .container-fluid > .navbar-header, .container > .navbar-collapse, .container-fluid > .navbar-collapse{
+	margin: 0px !important;
+}
+.container{
+	padding: 0px;
+	margin:; 0px;
+}
+.nav-collapse{
+	justify-content: center;
+	display: flex;
+	flex-flow: column;
+}
+
+.navbar .brand{
+	padding: 10px;
+	margin-left: 0;
+}
+#logo-img{
+	max-width: 85%;
+}
+#logo-img, #logo2-img{
+	margin:8px 20px 5px 30px;
+}
+#logo2-img{
+	float: right;
+	right: 0;
+	position: relative;
+}
+
+#padre{
+	display: flex;
+	flex-flow: column;
+	/*min-height: 100%;*/
+}
+ul, ol{
+	margin:0px;
+}
+.nav > li{
+	/*line-height: 50px;*/
+	padding:10px 0 0px 15px;
+	line-height: 50px;
+
+}
+ul.nav > li.current_page_item:after{
+	content: "";
+	display: flex;
+	border-top: 3px solid #fff;
+	margin-right: 17px;
+
+}
+.img_back{
+	width: 100%;
+}
+#menuCentral{
+	display:flex;
+}
+
+.flexslider{
+	margin: 0px !important;
+}
+
+
+.row{
+	margin:0px;
+}
+
+#banner_lookbook{
+	margin:10px 0px;
+}
+
+#armaPedido, #comoComprar, #loNuevo,#banner_lookbook{
+	padding: 0px;
+	cursor: pointer;
+}
+#armaPedido, #comoComprar, #loNuevo{
+		/*width: 33.3%;*/
+}
+
+#secciones,#perfil,#redes,#contacto_rap{
+	display: flex;
+	flex-flow: column;
+	padding: 50px 0px 25px 10px;
+}
+
+
+
+
+/* para el footer*/
+
+.footer{
+	justify-content: center;
+	display: flex;
+	flex-flow: row;
+	background-color: #212121;
+	opacity: 1;
+}
+.footer.container{
+	width: 100%;
+}
+
+#menu_footer, #redes>div, #contacto_rap>form>div{
+	padding-top: 50px;
+	padding-left: 0px;
+}
+#menu_footer > li{
+	padding: 5px 0px;
+	list-style: none;
+}
+#menu_footer > li > a{
+	list-style: none;
+	text-decoration: none;
+	color: #fff;
+	opacity: 0.5;
+	font-size: 15px;
+	text-transform: uppercase;
+	line-height: 18px;
+}
+
+.footer_title{
+	font-size: 19px;
+	text-transform: uppercase;
+	color:#fff;
+	padding: 50px 25px 5px 0px;
+	position: absolute;
+	top: 0;
+	border-bottom: 2px solid #000;
+}
+#redes > div{
+	padding-top: 50px;
+	max-width: 200px;
+}
+#redes > div > p{
+	font-size: 15px;
+	color: #fff;
+	opacity: 0.5;
+	text-align: justify-all;
+}
+#iconos_redes{
+	display: flex;
+	flex-flow: row;
+	padding-top: 10px;
+}
+#iconos_redes > div{
+	padding-right: 15px;
+}
+#iconos_redes > div > img{
+	cursor: pointer;
+}
+
+#contenidoForm{
+	display: flex;
+	flex-flow: column;
+}
+#contenidoForm > input,textarea{
+	border:none;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	background-color: transparent;
+	color:#fff;
+	max-width: 220px;
+}
+#enviarRapido{
+	display: flex;
+	flex-flow: row;
+	max-width: 220px;
+	justify-content: flex-end;
+}
+#enviarRapido > button{
+	width: 80px;
+	height: 30px;
+	border:none;
+	padding: 0px;
+	margin: 0px;
+}
+
+
+
+
+/* PARA LA ANIMACION DE 'ARMA TU PEDIDO' */
+
+.pressed{
+	z-index: 1;
+	-webkit-animation: pressedAnimation linear 1s;
+	-o-animation: pressedAnimation linear 1s;
+	animation: pressedAnimation .3s steps(10) forwards;
+
+}
+
+.hideDivs{
+	z-index: -1;
+	-webkit-animation: moveOtherDivs .3s steps(10) forwards;
+	-o-animation: moveOtherDivs .3s steps(10) forwards;
+	animation: moveOtherDivs .3s steps(10) forwards;
+}
+
+#contenedorDesplegable{
+	
+	left: -100%;
+}
+
+.showDesplegable{
+	display:flex!important;
+}
+
+#pedidoDesplegable{
+	display: flex;
+	flex-flow: row;
+
+}
+#pedidoDesplegable > div > img{
+	width: 100%;
+}
+#pedidoDesplegable > div{
+	padding: 0px;
+	position: relative;
+}
+
+#pedidoFront, #pedidoFull, #pedidoSudadera, #pedidoSpring{
+	width: 20%;
+	position: absolute;
+	left: 0px;
+	z-index: -10;
+	cursor: pointer;
+	
+}
+
+#pedidoFront > img, #pedidoFull > img, #pedidoSudadera > img, #pedidoSpring > img{
+	width: 100%;
+}
+#pedidoDesplegable > div{
+	padding: 0px;
+	position: relative;
+}
+.mostrarPedido{
+	
+	-webkit-animation: mostrarPedido 1s steps(50) forwards;
+	-o-animation: mostrarPedido 1s steps(50) forwards;
+	animation: mostrarPedido 1s steps(50) forwards;
+	display: flex;
+}
+
+#contedorMenuCentral, #menuCentral{
+	position: relative;
+}
+#contenedorDesplegable{
+	position: absolute;
+	z-index: -1;
+	top:0;
+	float: right;
+	max-width: 100%;
+
+}
+
+ul.nav > li  > a{
+	font-family: 'Futura', Arial, sans-serif;
+	font-size: 17px;
+	padding: 0px;
+	line-height: 60px;
+}
+
+ul.nav > li  > a:after{
+	content: "";
+	height: 10px;
+	border-left: 15px solid transparent;
+	border-right: 3px solid #000;
+	/*padding:0px 10px;
+	border-bottom: 2px solid #fff;*/
+}
+ul.nav > li:after{
+	content: "";
+}
+
+.loMasVendido{
+	background-color: #fff;
+	top:8px !important;
+	padding: 0 5px !important;
+	line-height: 40px !important;
+	color: #000 !important;
+	font-weight: bold;
+	border: none !important;
+}
+.loMasVendido:after,.rebajas:after, .perfil:after, .carro:after, .contacto:after{
+	content: "";
+	border: none !important;
+}
+
+.rebajas{
+	background-color: #ED0C5C;
+	top:8px !important;
+	padding: 0 23px !important;
+	line-height: 40px !important;
+	color: #fff !important;
+	font-weight: bold;
+	border: none !important;
+}
+
+.dudas:after{
+	content: "";
+	border:none !important;
+}
+
+
+.mostrarPedidoFront{
+	-webkit-animation: subPedidosFront .3s steps(10) forwards;
+	-o-animation: subPedidosFront .3s steps(10) forwards;
+	animation: subPedidosFront .3s steps(10) forwards;
+	position: relative;
+	display: block;
+}
+.mostrarPedidoFull{
+	-webkit-animation: subPedidosFull .3s steps(10) forwards;
+	-o-animation: subPedidosFull .3s steps(10) forwards;
+	animation: subPedidosFull .3s steps(10) forwards;
+	position: relative;
+	display: block;
+}
+.mostrarPedidoSudadera{
+	-webkit-animation: subPedidosSudadera .3s steps(10) forwards;
+	-o-animation: subPedidosSudadera .3s steps(10) forwards;
+	animation: subPedidosSudadera .3s steps(10) forwards;
+	position: relative;
+	display: block;
+}
+.mostrarPedidoSpring{
+	-webkit-animation: subPedidosSpring .3s steps(10) forwards;
+	-o-animation: subPedidosSpring .3s steps(10) forwards;
+	animation: subPedidosSpring .3s steps(10) forwards;
+	position: relative;
+	display: block;
+}
+
+.ocultarPedidoFront{
+	-webkit-animation: ocultarFront .3s steps(10) forwards;
+	-o-animation: ocultarFront .3s steps(10) forwards;
+	animation: ocultarFront .3s steps(10) forwards;
+}
+.ocultarPedidoFull{
+	-webkit-animation: ocultarFull .3s steps(10) forwards;
+	-o-animation: ocultarFull .3s steps(10) forwards;
+	animation: ocultarFull .3s steps(10) forwards;
+}
+.ocultarPedidoSudadera{
+	-webkit-animation: ocultarSudadera .3s steps(10) forwards;
+	-o-animation: ocultarSudadera .3s steps(10) forwards;
+	animation: ocultarSudadera .3s steps(10) forwards;
+}
+.ocultarPedidoSpring{
+	-webkit-animation: ocultarSpring .3s steps(10) forwards;
+	-o-animation: ocultarSpring .3s steps(10) forwards;
+	animation: ocultarSpring .3s steps(10) forwards;
+}
+
+@keyframes pressedAnimation {
+  from{left:0%;}
+  to{left:0%;}
+	
+}
+
+@keyframes moveOtherDivs {
+	from{right:0%;}
+	to{right:-101%;}
+}
+
+@keyframes mostrarPedido{
+	from{position: absolute; left: -200%;}
+	to{position:absolute; left: 20%;
+	}
+}
+
+@keyframes subPedidosFront{
+	from{position: absolute; left: 0%}
+	to{position: absolute; left:20%;}
+}
+@keyframes subPedidosFull{
+	from{position: absolute; left: 0%}
+	to{position: absolute; left:40%;}
+}
+@keyframes subPedidosSudadera{
+	from{position: absolute; left: 0%}
+	to{position: absolute; left:60%;}
+}
+@keyframes subPedidosSpring{
+	from{position: absolute; left: 0%}
+	to{position: absolute; left:80%;}
+}
+
+@keyframes ocultarFront{
+	from{position:absolute; left: 20%;}
+	to{position: absolute; left: 0%;}
+}
+@keyframes ocultarFull{
+	from{position: absolute; left: 40%;}
+	to{position: absolute; left: 0%;}
+}
+@keyframes ocultarSudadera{
+	from{position: absolute; left: 60%;}
+	to{position: absolute; left: 0%;}
+}
+@keyframes ocultarSpring{
+	from{position: absolute;left: 80%;}
+	to{position: absolute; left: 0%;}
+}
+
+
+body.wp-admin{
+	background-color: #000 !important;
+
+}
+
+/*Resoluciones para distintos dispositivos*/
+
+/*para mas o menos una ipad:*/
+@media
+	and (min-device-width: 768px)
+	and (max-device-width: 1024px){
+	
+	#armaPedido, #comoComprar, #loNuevo{
+		width: 100%;
+	}
+}
+
+@media (max-width: 1360px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-left,.navbar-right {
+        float: none !important;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse {
+        border-top: 1px solid transparent;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .navbar-fixed-top {
+        top: 0;
+        border-width: 0 0 1px;
+    }
+    .navbar-collapse.collapse {
+        display: none!important;
+    }
+    .navbar-nav {
+        float: none!important;
+        margin-top: 7.5px;
+    }
+    .navbar-nav>li {
+        float: none;
+    }
+    .navbar-nav>li>a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .collapse.in{
+        display:block !important;
+    }
+}
+
+
+@media screen and (min-width: 1200px) and (max-width: 1330px){
+	html,body{
+		/*height: 100%;*/
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+    .nav > li{
+		line-height: 20px;
+	}
+	.nav{
+		float: left;
+	}
+	.nav > li > a{
+		display: table-cell;
+	}
+
+	/*.current_page_item{
+		background-color: 
+	}*/
+
+}
+
+
+/* estilos para el contenedor de video index:*/
+
+#myModal2 > .modal-dialog >.modal-content{
+	background-color: transparent;
+	max-width: 100%;
+	margin-top: 200px;
+	box-shadow: none;
+	border: none;
+}
+#myModal2 > .modal-dialog > .modal-content > .modal-body{
+	padding: 0px;
+}
+
+#myModal2 > .modal-dialog{
+	max-width: 40%;
+}
+#myModal2 > .modal-dialog > .modal-content > .modal-header{
+	border: none;
+}
+
+.fa-times-circle-o, .fa-times-circle{
+	color: #fff;
+	font-size: 30px !important;
+}
+.close{
+	opacity: 1;
+}
+
+
+/*
+	estilo para el dialogo desplegable cuando inicia sesion
+*/
+
+.arrow_box {
+	position: fixed;
+	background: #e2e91f;
+	z-index: 9999;
+
+}
+.arrow_box h3{
+	color: #fff;
+	text-shadow: 1px 1px rgba(0,0,0,.2);
+	padding: 0px 10px;
+	font-weight: bold;
+}
+.arrow_box:after {
+	bottom: 100%;
+	left: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+	border-color: rgba(247, 255, 0, 0);
+	border-bottom-color: #e2e91f;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+h1, h2,h3, ul.nav li{
+	text-transform: uppercase;
+}
+
+ul.nav li a, footer > *{
+	font-family: "Futura", Fallback, sans-serif;
+}
+
+.footer_title, .loMasVendido, .rebajas{
+	font-family: "Abreu", Fallback, sans-serif !important;
+}
+
+#armaPedido2:hover, #comoComprar:hover, #loNuevo:hover, #pedidoSpring:hover, #pedidoSudadera:hover, #pedidoFull:hover, #pedidoFront:hover{
+	opacity: 0.5;
+}

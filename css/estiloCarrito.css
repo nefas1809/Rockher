@@ -1,0 +1,101 @@
+div.woocommerce{
+	width: 90%;
+	margin:auto;
+}
+
+table.shop_table{
+	border:none !important;
+}
+
+.woocommerce a.remove:hover{
+	background-color: transparent !important;
+}
+
+th{
+	text-transform: uppercase;
+	font-family: "Abreu", Fallback, sans-serif;
+	font-size: 22px;
+	font-weight: normal !important;
+}
+dt, dd, td > span, div.quantity > input{
+	font-family: "Futura", Fallback, sans-serif;
+	font-size: 20px;
+	font-style: italic;
+	color:#323232;
+	text-transform: uppercase;
+	font-weight: normal !important;
+	opacity: .5;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+	background-color: #00BEEE;
+	text-transform: uppercase;
+	font-family: "Abreu", Fallback, sans-serif;
+	font-size: 18px;
+	font-weight: normal !important;
+}
+.woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover{
+	background-color: #00BEEE;
+}
+
+div.quantity{
+	margin-top: 5px;
+}
+div.quantity > input{
+	background-color: #eee;
+	border:none;
+	width: 60px;
+	height: 30px;
+}
+
+.woocommerce .cart-collaterals, .woocommerce-page .cart-collaterals{
+	margin-bottom: 50px;
+}
+
+tr:nth-child(even){
+	background-color: rgba(186,187,192,.1);
+}
+div.cart_totals{
+	width: 100% !important;
+	display: flex;
+	flex-flow: column;
+	align-items: flex-end;
+}
+div.cart_totals > table.shop_table{
+	margin-bottom: 130px !important;
+	float: right;
+	width: 35%;
+}
+
+div.cart_totals > h2{
+	display: none;
+}
+div.cart_totals > table > tbody > tr > th, div.cart_totals > table > tbody > tr > td{
+	border: none !important;
+}
+div.cart_totals th, td, tr{
+	font-family: "Futura", Fallback, sans-serif;
+	font-size: 20px;
+	border:none;
+	background-color: #fff !important;
+	border:none;
+}
+div.cart_totals th{
+	float: right;
+}
+div.cart_totals table{
+	border:none;
+	background-color: #fff;
+}
+
+div.wc-proceed-to-checkout{
+	float: right;
+}
+
+.continuarComprando{
+	margin-right: 50px !important;
+}
+
+td.actions > input{
+	float: right;
+}

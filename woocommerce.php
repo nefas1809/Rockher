@@ -1,9 +1,4 @@
-<?php
-if(isset($_GET['95'])){
-$query=$_GET['id'];
-echo $query;
-}
-?>
+
 <?php get_header(); ?>
 
 
@@ -107,7 +102,6 @@ echo $query;
 </div>-->
 
 <script>	
-
 <?
 	if(is_product_category()){
 ?>
@@ -287,7 +281,7 @@ $('#myModal').on('hidden.bs.modal', function () {
 <?
 	if(is_product_category() || is_shop()){
 ?>
-
+		console.log("es category o tienda");
 		$("div.product").addClass("col-lg-3 col-md-4 col-sm-6 col-xs-12");
 		$("ul.products").addClass("row");
 		$(".children").css('display','none');
@@ -343,6 +337,7 @@ $('#myModal').on('hidden.bs.modal', function () {
 		});
 <?
 	}
+	
 ?>
 
 /*$("#i-cerrarDetalles").click(function(){

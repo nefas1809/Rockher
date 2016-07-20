@@ -20,8 +20,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-wc_print_notices();
 
+
+wc_print_notices();
+require_once 'variables_carro.php';
 do_action( 'woocommerce_before_cart' ); ?>
 
 <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
@@ -31,12 +33,13 @@ do_action( 'woocommerce_before_cart' ); ?>
 <table class="shop_table shop_table_responsive cart" cellspacing="0">
 	<thead>
 		<tr>
-			<th class="product-remove">&nbsp;</th>
+			
 			<th class="product-thumbnail">&nbsp;</th>
-			<th class="product-name"><?php _e( 'Product', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Price', 'woocommerce' ); ?></th>
+			<th class="product-name"><?php _e( 'Estilo de prenda', 'woocommerce' ); ?></th>
+			<th class="product-price"><?php _e( 'Precio unitario', 'woocommerce' ); ?></th>
 			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
 			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
+			<th class="product-remove">&nbsp;</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -52,17 +55,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 				?>
 				<tr class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
 
-					<td class="product-remove">
-						<?php
-							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
-								'<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s">&times;</a>',
-								esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
-								__( 'Remove this item', 'woocommerce' ),
-								esc_attr( $product_id ),
-								esc_attr( $_product->get_sku() )
-							), $cart_item_key );
-						?>
-					</td>
+					
 
 					<td class="product-thumbnail">
 						<?php
@@ -101,6 +94,9 @@ do_action( 'woocommerce_before_cart' ); ?>
 					</td>
 
 					<td class="product-quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
+						<?
+							createTalla();
+						?>
 						<?php
 							if ( $_product->is_sold_individually() ) {
 								$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -115,11 +111,23 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 							echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
 						?>
+
 					</td>
 
 					<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 						<?php
 							echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+						?>
+					</td>
+					<td class="product-remove">
+						<?php
+							echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
+								'<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s"><i id="i-cerrarDetalles" class="fa fa-times close" aria-hidden="true" style="font-size: 32px;"></i></a>',
+								esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+								__( 'Remove this item', 'woocommerce' ),
+								esc_attr( $product_id ),
+								esc_attr( $_product->get_sku() )
+							), $cart_item_key );
 						?>
 					</td>
 				</tr>
@@ -132,14 +140,14 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<tr>
 			<td colspan="6" class="actions">
 
-				<?php if ( wc_coupons_enabled() ) { ?>
+				<!--<?php if ( wc_coupons_enabled() ) { ?>
 					<div class="coupon">
 
 						<label for="coupon_code"><?php _e( 'Coupon', 'woocommerce' ); ?>:</label> <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php esc_attr_e( 'Coupon code', 'woocommerce' ); ?>" /> <input type="submit" class="button" name="apply_coupon" value="<?php esc_attr_e( 'Apply Coupon', 'woocommerce' ); ?>" />
 
 						<?php do_action( 'woocommerce_cart_coupon' ); ?>
 					</div>
-				<?php } ?>
+				<?php } ?>-->
 
 				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
 
@@ -163,4 +171,10 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 </div>
 
-<?php do_action( 'woocommerce_after_cart' ); ?>
+<?php do_action( 'woocommerce_after_cart' ); 
+	  addBack2Shop();
+?>
+
+
+
+

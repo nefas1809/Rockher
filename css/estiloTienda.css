@@ -68,7 +68,8 @@
 }
 .page-title{
 	text-align: center;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
+	margin-top: 50px;
 	font-family: "Abreu", Fallback, sans-serif;
 }
 .cat-parent > a{

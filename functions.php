@@ -339,6 +339,14 @@ function removeJQueryOthers(){
 	}
 }
 
+add_filter('gettext', 'translate_reply');
+add_filter('ngettext', 'translate_reply');
+
+function translate_reply($translated) {
+$translated = str_ireplace('Price', 'Precio unitario', $translated);
+return $translated;
+}
+
 
 
 

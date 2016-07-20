@@ -159,4 +159,8 @@ function clearModal(){
 
 }
 
+/*function crearCirculoTalla($talla, $contenedor){
+	$(contenedor).append("<div class='col-md-3'><div class='img-estilo' id='"+talla+"'><i class='fa fa-check-circle' aria-hidden='true'></i></div><span>"+talla+"</span></div>");
+}*/
+
 

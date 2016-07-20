@@ -79,7 +79,7 @@
             } 
             ?>
           
-        }else if($(this).children(":first-child").text() === "Carrito"){
+        }else if($(this).children(":first-child").text() === "Carrito de compra"){
           $(this).children(":first-child").addClass("carro").text('').append("<i class='fa fa-shopping-basket' aria-hidden='true'></i>");
         }else if($(this).children(":first-child").text() === "Contacto"){
           $(this).children(":first-child").text('').append("<i class='fa fa-envelope' aria-hidden='true'></i>");

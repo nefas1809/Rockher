@@ -64,7 +64,6 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
 
 
       <div class="row" id="contenedorDesplegable">
-      <h1>HOLA</h1>
         <div class="row" id="pedidoDesplegable">
         <div id="pedidoFront">
           <img src="<?php bloginfo('template_url'); ?>/img/frontPrint.jpg" alt="">

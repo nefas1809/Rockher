@@ -12,15 +12,16 @@
 					</div>
 					<div id="redes" class="col-sm-6 col-xs-12 col-md-3">
 						<div><span class="footer_title">Encuéntranos</span>
-							<p>Obregón #357, entre Mariano Jiménez y Juan Díaz Covarrubias. Col. San Juan de Dios. Guadalajara Jalisco</p>
+							<!--<p>Obregón #357, entre Mariano Jiménez y Juan Díaz Covarrubias. Col. San Juan de Dios. Guadalajara Jalisco</p>
 							<br>
 							<p>(33) 3654 1219</p>
-							<p>hola@rockher.mx</p>
+							<p>hola@rockher.mx</p>-->
+							<? echo get_option('encuentranos-direccion') ?>
 							<div id="iconos_redes">
-								<div><a href="https://www.twitter.com/" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoTwitter.png" alt="" class="social"></div></a>
-								<div><a href="https://www.facebook.com/" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoFacebook.png" alt="" class="social"></div></a>
-								<div><a href="https://www.instagram.com/" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoInstagram.png" alt="" class="social"></div></a>
-								<div><a href="https://www.snapchat.com/" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoSnapchat.png" alt="" class="social"></div></a>
+								<div><a href="<? echo get_option('twit-dir')?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoTwitter.png" alt="" class="social"></div></a>
+								<div><a href="<? echo get_option('face-dir')?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoFacebook.png" alt="" class="social"></div></a>
+								<div><a href="<? echo get_option('insta-dir')?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoInstagram.png" alt="" class="social"></div></a>
+								<div><a href="<? echo get_option('snap-dir')?>" target="_blank"><img src="<?php bloginfo('template_url'); ?>/img/iconoSnapchat.png" alt="" class="social"></div></a>
 							</div>
 						</div>
 					</div>

@@ -30,8 +30,31 @@
 	<?
 		}else if(is_checkOut()){
 	?>
-		console.log("ES check");
-		$.getScript('<? bloginfo('template_directory')?>/js/modificarCarrito.js');	
+			console.log("ES check");
+			$.getScript('<? bloginfo('template_directory')?>/js/modificarCarrito.js');	
+	<?		
+		}else if(is_page('contacto')){
+			$dir1 = get_option("contacto-dir1");
+			$dir2 = get_option("contacto-dir2");
+			$dir3 = get_option("contacto-dir3");
+			$horario = get_option("horario" );
+			$tel = get_option("telefono" );
+			$chat = get_option("chat" );
+			$terminos = get_option("terminos" );
+
+
+	?>
+			$("#dir-1").html('<?=$dir1 ?>');
+			$("#dir-2").html('<?=$dir2 ?>');
+			$("#dir-3").html('<?=$dir3 ?>');
+			$("#horario").html('<?=$horario ?>');
+			$("#telefono").html('<?=$tel ?>');
+			$("#chat").html('<?=$chat ?>');
+			$("#terminos").html('<?=$terminos ?>');
+
+			var alturaSeparador = $("#form-contacto").height()+$("#chat").height();
+			$(".separador").css("height",alturaSeparador);
+
 	<?		
 		}
 

@@ -27,12 +27,15 @@ dt, dd, td > span, div.quantity > input{
 	opacity: .5;
 }
 
-.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt{
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .button.alt{
 	background-color: #00BEEE;
 	text-transform: uppercase;
 	font-family: "Abreu", Fallback, sans-serif;
 	font-size: 18px;
 	font-weight: normal !important;
+	padding: .618em 1em;
+	color:#fff;
+	border-radius: 0px !important;
 }
 .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover{
 	background-color: #00BEEE;

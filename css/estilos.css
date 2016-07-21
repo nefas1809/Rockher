@@ -244,7 +244,7 @@ ul.nav > li.current_page_item:after{
 	display: flex;
 	flex-flow: column;
 }
-#contenidoForm > input,textarea{
+#contenidoForm > input,#contenidoForm > textarea{
 	border:none;
 	border-bottom: 1px solid rgba(255,255,255,0.1);
 	background-color: transparent;
@@ -646,4 +646,98 @@ ul.nav li a, footer > *{
 
 #armaPedido2:hover, #comoComprar:hover, #loNuevo:hover, #pedidoSpring:hover, #pedidoSudadera:hover, #pedidoFull:hover, #pedidoFront:hover{
 	opacity: 0.5;
+}
+
+
+
+
+/*ESTILOS PARA CONTACTO*/
+
+#info-y-contacto{
+	margin-top: 30px;
+	margin-left: 50px;
+	display: flex;
+	flex-flow: row;
+}
+
+#contenido-info > div#encuentranos, div#llamanos{
+	display: flex;
+	flex-flow: row;
+	font-family: "Futura", Fallback, sans-serif;
+	font-size: 22px;
+	color:#babbc0;
+
+}
+div#llamanos{
+	flex-flow: column;
+}
+div#llamanos > p > span{
+	color: #323232;
+	opacity: .7;
+}
+#contenido-info > h2, #contenido-contacto > h2{
+	border-bottom: 3px solid;
+	display: inline-block;
+	padding:0px 10px 15px 10px;
+	font-family: "Abreu", Fallback, sans-serif;
+}	
+
+#contenido-contacto > #form-contacto{
+	display: flex;
+	flex-flow: column;
+	padding-right: 5%;
+	align-items: flex-end;
+	margin-top: 27px;
+}
+#form-contacto > p{
+	font-family: "Futura", Fallback, sans-serif;
+	font-size: 22px;
+	color:#323232;
+	font-style: italic;
+}
+#form-contacto > p > span > textarea, #form-contacto > p > span > input{
+	border:none;
+	border-bottom: 2px solid #c3c3c3;
+	font-style: normal;
+	color: rgba(63,63,63,.5);
+}
+#form-contacto > p > span > textarea{
+	height: 100px;
+}
+#form-contacto > *, #form-contacto > p > span > input, #form-contacto > p > span > textarea{
+	width: 100%;
+}
+
+#dir-1, #dir-2, #dir-3{
+	width: 33.3%;
+	padding: 30px;
+	text-align: justify;
+}
+
+#dir-1{
+	padding-left: 0px;
+}
+#dir-3{
+	padding-right: 0px;
+}
+#horario{
+	margin-top: 30px;
+}
+#chatVivo{
+	color: #00beed !important;
+}
+#enviarContacto{
+	float: right;
+}
+
+/*#contenido-info:after{
+	content: "";
+	border-left: 3px solid #c3c3c3;
+	margin:auto 40px;
+	height: 500px;
+}*/
+
+.separador{
+	border-left: 3px solid #c3c3c3;
+	margin:auto 40px;
 }

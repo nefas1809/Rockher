@@ -349,5 +349,65 @@ return $translated;
 
 
 
+//Custom Theme Settings
+add_action('admin_menu', 'add_gcf_interface');
+
+function add_gcf_interface() {
+	add_options_page('Ajustes globales', 'Ajustes globales', '8', 'functions', 'editglobalcustomfields');
+}
+
+function editglobalcustomfields() {
+	?>
+	<div class='wrap'>
+	<h2>Configuraciones editables</h2>
+	<form method="post" action="options.php">
+	<?php wp_nonce_field('update-options') ?>
+	<h3>Campos para el footer (encuéntranos):</h3>
+	
+
+	<p><strong>Dirección y teléfonos:</strong><br />
+	<textarea name="encuentranos-direccion" cols="100%" rows="7"><?php echo get_option('encuentranos-direccion'); ?></textarea></p>
+	<p><strong>Dirección de Twitter:</strong><br />
+	<input type="text" name="twit-dir" size="45" value="<?php echo get_option('twit-dir'); ?>" /></p>
+	<p><strong>Dirección de Facebook:</strong><br />
+	<input type="text" name="face-dir" size="45" value="<?php echo get_option('face-dir'); ?>" /></p>
+	<p><strong>Dirección de Instagram:</strong><br />
+	<input type="text" name="insta-dir" size="45" value="<?php echo get_option('insta-dir'); ?>" /></p>
+	<p><strong>Dirección de Snapchat:</strong><br />
+	<input type="text" name="snap-dir" size="45" value="<?php echo get_option('snap-dir'); ?>" /></p><br />
+	<div style="width:100%; border-bottom:5px dashed gray; margin:50px 0px;"></div>
+	<h3>Campos para formulario de contacto:</h3>
+	<p><strong>Dirección 1:</strong><br />
+	<textarea name="contacto-dir1" cols="100%" rows="7"><?php echo get_option('contacto-dir1'); ?></textarea></p>
+	<p><strong>Dirección 2:</strong><br />
+	<textarea name="contacto-dir2" cols="100%" rows="7"><?php echo get_option('contacto-dir2'); ?></textarea></p>
+	<p><strong>Dirección 3:</strong><br />
+	<textarea name="contacto-dir3" cols="100%" rows="7"><?php echo get_option('contacto-dir3'); ?></textarea></p>
+
+	<h4>Llámanos</h4>
+	<p><strong>Horario:</strong><br />
+	<input type="text" name="horario" size="45" value="<?php echo get_option('horario'); ?>" /></p>
+	<p><strong>Teléfono:</strong>
+	<p style="font-weight:bold; color:red;">**El número de telefono debe tener el siguiente formato: <span style="color:#52ACCC;">Tel: &lt;span&gt;Aquí el número de télefono&lt;/span&gt;</span><br/>
+	<span style="color:#4f4f4f;">Puedes copiar y pegar la parte en color azul y colocar tu número teléfonico.</span>
+	</p>
+	<input type="text" name="telefono" size="45" value="<?php echo get_option('telefono'); ?>" /></p>
+	<br/>
+	<h4>Chat y términos</h4>
+	<p><strong>Chat:</strong>
+	<p style="font-weight:bold; color:red;">**La palabra resaltada debe ir dentro de la etiqueta: <span style="color:#52ACCC;">&lt;span id="chatVivo"&gt;Aquí la palabra resaltada&lt;/span&gt;</span></p>
+	<textarea name="chat" cols="100%" rows="7"><?php echo get_option('chat'); ?></textarea></p>
+	<p><strong>Términos y condiciones:</strong><br />
+	<textarea name="terminos" cols="100%" rows="7"><?php echo get_option('terminos'); ?></textarea></p>
+	<p><input type="submit" name="Submit" value="Guardar cambios" class="button button-primary" /></p>
+
+	<input type="hidden" name="action" value="update" />
+	<input type="hidden" name="page_options" value="twit-dir,face-dir,insta-dir,snap-dir,encuentranos-direccion, contacto-dir1, contacto-dir2, contacto-dir3, horario, telefono, chat, terminos" />
+
+	</form>
+	</div>
+	<?php
+}
+
 
 ?>

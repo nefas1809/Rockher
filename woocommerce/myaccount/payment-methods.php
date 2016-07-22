@@ -69,10 +69,19 @@ do_action( 'woocommerce_before_account_payment_methods', $has_methods ); ?>
 
 <?php else : ?>
 
-	<p class="woocommerce-Message woocommerce-Message--info woocommerce-info"><?php esc_html_e( 'No saved methods found.', 'woocommerce' ); ?></p>
+	<div class="woocommerce-Message woocommerce-Message--info woocommerce-info">
+	<a class="woocommerce-Button button alt" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>"><?php esc_html_e( 'Add Payment Method', 'woocommerce' ); ?>
+		
+	</a>
+		
+		<?php _e( 'No has guardado ningún método de pago  ', 'woocommerce' ); ?><i class="fa fa-frown-o" aria-hidden="true"></i>
+
+	</div>
+
+	
 
 <?php endif; ?>
 
 <?php do_action( 'woocommerce_after_account_payment_methods', $has_methods ); ?>
 
-<a class="button" href="<?php echo esc_url( wc_get_endpoint_url( 'add-payment-method' ) ); ?>"><?php esc_html_e( 'Add Payment Method', 'woocommerce' ); ?></a>
+

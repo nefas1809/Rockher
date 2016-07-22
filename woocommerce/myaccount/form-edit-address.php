@@ -30,23 +30,24 @@ do_action( 'woocommerce_before_edit_account_address_form' ); ?>
 
 	<form method="post">
 
-		<h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h3>
+		<div id="tituloForm"><h3><?php echo apply_filters( 'woocommerce_my_account_edit_address_title', $page_title ); ?></h3></div>
 
 		<?php do_action( "woocommerce_before_edit_address_form_{$load_address}" ); ?>
-
+		<div>
 		<?php foreach ( $address as $key => $field ) : ?>
 
 			<?php woocommerce_form_field( $key, $field, ! empty( $_POST[ $key ] ) ? wc_clean( $_POST[ $key ] ) : $field['value'] ); ?>
 
 		<?php endforeach; ?>
+		</div>
 
 		<?php do_action( "woocommerce_after_edit_address_form_{$load_address}" ); ?>
 
-		<p>
-			<input type="submit" class="button" name="save_address" value="<?php esc_attr_e( 'Save Address', 'woocommerce' ); ?>" />
+		<div>
+			<input type="submit" class="button alt" name="save_address" value="<?php esc_attr_e( 'Save Address', 'woocommerce' ); ?>" />
 			<?php wp_nonce_field( 'woocommerce-edit_address' ); ?>
 			<input type="hidden" name="action" value="edit_address" />
-		</p>
+		</div>
 
 	</form>
 

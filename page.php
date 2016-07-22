@@ -56,6 +56,40 @@
 			$(".separador").css("height",alturaSeparador);
 
 	<?		
+		}else if(is_page('mi-cuenta')){
+	?>
+			console.log("es mi cuenta");
+			$("div.woocommerce").css("width","100%");
+			$.getScript('<? bloginfo('template_directory')?>/js/mi_cuenta.js');
+	<?
+
+		}else if(is_page('dudas-frecuentes')){
+	?>
+			$(document).ready(function(){
+				console.log("Es dudas");
+				$direccion = "<? bloginfo('template_url');?>/dudas.html";
+				console.log($direccion);
+			    $.ajax({
+			        url: $direccion,
+			        type: 'GET',
+			        success: function(data){
+			        	$("#page > .row").append(data);
+			        	$(".respuesta").hide();
+
+			        	$(".pregunta > i").click(function(){
+			        		$(this).parent().parent().find("p.respuesta").slideToggle();
+			        		if($(this).hasClass("fa-plus")){
+			        			$(this).removeClass("fa-plus").addClass("fa-minus");
+			        		}else{
+			        			$(this).removeClass("fa-minus").addClass("fa-plus");
+			        		}
+			        	});
+			        }
+			    });
+
+			});
+						
+	<?
 		}
 
 

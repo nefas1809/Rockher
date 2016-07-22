@@ -115,10 +115,11 @@ do_action( 'woocommerce_before_account_orders', $has_orders ); ?>
 
 <?php else : ?>
 	<div class="woocommerce-Message woocommerce-Message--info woocommerce-info">
-		<a class="woocommerce-Button button" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
-			<?php _e( 'Go Shop', 'woocommerce' ) ?>
+		<a class="woocommerce-Button button alt" href="<?php echo esc_url( apply_filters( 'woocommerce_return_to_shop_redirect', wc_get_page_permalink( 'shop' ) ) ); ?>">
+			<?php _e( 'Ir a comprar!', 'woocommerce' ) ?>
 		</a>
-		<?php _e( 'No order has been made yet.', 'woocommerce' ); ?>
+		<?php _e( 'No has comprado nada ', 'woocommerce' ); ?><i class="fa fa-frown-o" aria-hidden="true"></i>
+
 	</div>
 <?php endif; ?>
 

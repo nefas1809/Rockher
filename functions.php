@@ -409,5 +409,58 @@ function editglobalcustomfields() {
 	<?php
 }
 
+// Add the code below to your theme's functions.php file to add a confirm password field on the register form under My Accounts.
+add_filter('woocommerce_registration_errors', 'registration_errors_validation', 10,3);
+function registration_errors_validation($reg_errors, $sanitized_user_login, $user_email) {
+	global $woocommerce;
+	extract( $_POST );
+	if ( strcmp( $password, $password2 ) !== 0 ) {
+		return new WP_Error( 'registration-error', __( 'Passwords do not match.', 'woocommerce' ) );
+	}
+	return $reg_errors;
+}
+add_action( 'woocommerce_register_form', 'wc_register_form_password_repeat' );
+function wc_register_form_password_repeat() {
+	?>
+	<p class="form-row form-row-wide">
+		<label for="reg_password2"><?php _e( 'Confirmar contraseña', 'woocommerce' ); ?> <span class="required">*</span></label>
+		<input type="password" class="input-text" name="password2" id="reg_password2" value="<?php if ( ! empty( $_POST['password2'] ) ) echo esc_attr( $_POST['password2'] ); ?>" />
+	</p>
+	<?php
+}
+
+
+
+
+
+function wpb_woo_my_account_order() {
+	$myorder = array(
+		'dashboard'       => __( 'Mi cuenta', 'woocommerce' ),
+		'orders'          => __( 'Mis pedidos', 'woocommerce' ),
+		'edit-address'    => __( 'Direcciones', 'woocommerce' ),
+		'payment-methods' => __( 'Metodos de pago', 'woocommerce' ),
+		'edit-account'    => __( 'Detalles de mi cuenta', 'woocommerce' ),
+		'customer-logout' => __( 'Logout', 'woocommerce' ),
+	);
+	return $myorder;
+}
+add_filter ( 'woocommerce_account_menu_items', 'wpb_woo_my_account_order' );
+
+function wpb_woo_endpoint_title( $title, $id ) {
+	if ( is_wc_endpoint_url( 'dashboard' ) && in_the_loop() ) { // add your endpoint urls
+		$title = "Mi cuenta"; // change your entry-title
+	}
+	elseif ( is_wc_endpoint_url( 'orders' ) && in_the_loop() ) {
+		$title = "Mis pedidos";
+	}
+	elseif ( is_wc_endpoint_url( 'edit-address' ) && in_the_loop() ) {
+		$title = "Direcciones";
+	}
+	elseif ( is_wc_endpoint_url( 'payment-methods' ) && in_the_loop() ) {
+		$title = "Motodos de pago";
+	}
+	return $title;
+}
+add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
 
 ?>

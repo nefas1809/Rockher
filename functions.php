@@ -1,93 +1,25 @@
 <?php 
 
 
-/*function wc_dropdown_variation_attribute_options( $args = array() ) {
-		$args = wp_parse_args( apply_filters( 'woocommerce_dropdown_variation_attribute_options_args', $args ), array(
-			'options'          => false,
-			'attribute'        => false,
-			'product'          => false,
-			'selected' 	       => false,
-			'name'             => '',
-			'id'               => '',
-			'class'            => '',
-			'show_option_none' => __( 'Elige una opción', 'woocommerce' )
-		) );
-
-		$options   = $args['options'];
-		$product   = $args['product'];
-		$attribute = $args['attribute'];
-		$name      = $args['name'] ? $args['name'] : 'attribute_' . sanitize_title( $attribute );
-		$id        = $args['id'] ? $args['id'] : sanitize_title( $attribute );
-		$class     = $args['class'];
-
-		if ( empty( $options ) && ! empty( $product ) && ! empty( $attribute ) ) {
-			$attributes = $product->get_variation_attributes();
-			$options    = $attributes[ $attribute ];
-		}
-
-		$html = '<select id="' . esc_attr( $id ) . '" class="' . esc_attr( $class ) . '" name="' . esc_attr( $name ) . '" data-attribute_name="attribute_' . esc_attr( sanitize_title( $attribute ) ) . '">';
-		$nuevoHtml;
-
-		if ( $args['show_option_none'] ) {
-			$html .= '<option value="">' . esc_html( $args['show_option_none'] ) . '</option>';
-		}
-
-		if ( ! empty( $options ) ) {
-			if ( $product && taxonomy_exists( $attribute ) ) {
-				// Get terms if this is a taxonomy - ordered. We need the names too.
-				$terms = wc_get_product_terms( $product->id, $attribute, array( 'fields' => 'all' ) );
-
-				foreach ( $terms as $term ) {
-					if ( in_array( $term->slug, $options ) ) {
-						$html .= '<option value="' . esc_attr( $term->slug ) . '" ' . selected( sanitize_title( $args['selected'] ), $term->slug, false ) . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $term->name ) ) . '</option>';
-						$nuevoHtml .= "<div class='modificadoNOE'><span id=".esc_attr( $option ).">".$term->name."</span></div>";
-					}
-				}
-			} else {
-				foreach ( $options as $option ) {
-					// This handles < 2.4.0 bw compatibility where text attributes were not sanitized.
-					$selected = sanitize_title( $args['selected'] ) === $args['selected'] ? selected( $args['selected'], sanitize_title( $option ), false ) : selected( $args['selected'], $option, false );
-					$html .= '<option value="' . esc_attr( $option ) . '" ' . $selected . '>' . esc_html( apply_filters( 'woocommerce_variation_option_name', $option ) ) . '</option>';
-					$nuevoHtml .= "<div class='modificadoNOE'><span id=".esc_attr( $option ).">".esc_attr( $option )."</span></div>";
-				}
-			}
-		}
-
-		$html .= '</select>';
-
-		echo apply_filters( 'woocommerce_dropdown_variation_attribute_options_html', $html.$nuevoHtml, $args );
-	}*/
-
-/*function conditionally_load_woc_js_css(){
-if( function_exists( 'is_woocommerce' ) ){
-        # Only load CSS and JS on Woocommerce pages   
-	if(! is_woocommerce() && ! is_cart() && ! is_checkout() ) { 		
-		
-		## Dequeue scripts.
-		wp_dequeue_script('woocommerce'); 
-		wp_dequeue_script('wc-add-to-cart'); 
-		wp_dequeue_script('wc-cart-fragments');
-		wp_dequeue_script('wc-add-to-cart-variation');
-		
-		## Dequeue styles.	
-		wp_dequeue_style('woocommerce-general'); 
-		wp_dequeue_style('woocommerce-layout'); 
-		wp_dequeue_style('woocommerce-smallscreen'); 
-			
-		}
-	}else{
-		echo "<script>console.log('no es');</script>";
-	}	
-}*/
-
 add_theme_support( 'nav-menus' );
 register_nav_menus(array('menu' => __('menu')));
 
 
 function wpbootstrap_scripts_with_jquery()
 {
-
-	wp_enqueue_style('estiloAdmin',get_stylesheet_uri());
+	wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css' );
+	wp_register_style('bootstrap_resp', get_template_directory_uri() . '/css/bootstrap-responsive.css' );
+	wp_register_style('estiloAdmin', get_template_directory_uri() . '/css/estiloAdmin.css' );
+	wp_register_style("estilos", get_template_directory_uri() . '/css/estilos.css' );
+	wp_register_style("estiloTienda", get_template_directory_uri() . '/css/estiloTienda.css' );
+	wp_register_style("estiloCarrito", get_template_directory_uri() . '/css/estiloCarrito.css' );
+	wp_register_style("contactoResponsive", get_template_directory_uri() . '/css/contacto.responsive.css' );
+	wp_enqueue_style('bootstrap');
+	wp_enqueue_style('bootstrap_resp');
+	wp_enqueue_style('estilos');
+	wp_enqueue_style('estiloTienda');
+	wp_enqueue_style('estiloCarrito');
+	wp_enqueue_style('contactoResponsive');
 	// Register the script like this for a theme:
 	wp_register_script( 'jqueryScript', get_template_directory_uri() . '/js/jquery-3.0.0.js', array( 'jquery' ) );
 	wp_register_script( 'custom-script', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ) );
@@ -462,5 +394,11 @@ function wpb_woo_endpoint_title( $title, $id ) {
 	return $title;
 }
 add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
+
+
+
+
+
+
 
 ?>

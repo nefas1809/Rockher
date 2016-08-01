@@ -26,7 +26,7 @@
 <!--<?php wp_enqueue_script("jquery"); ?>-->
 
 <?php wp_head(); ?>
-<!--<link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">-->
+<link href="<?php bloginfo('stylesheet_url');?>" rel="stylesheet">
     <!--<script src="http://code.jquery.com/jquery.js"></script>   -->
     <!--<script src="<?php get_template_directory_uri() . '/js/jquery.js'?>"></script>
     <script src="<?php get_template_directory_uri() . '/js/bootstrap.js'?>"></script>
@@ -40,12 +40,13 @@
   <script>
     $(document).ready(function(){
       $("div.arrow_box").hide();
-      $("ul.nav li").each(function(){
-        if($(this).children(":first-child").text() === "Lo + vendido"){
+      $("div.nav div").each(function(){
+        /*if($(this).children(":first-child").text() === "Lo + vendido"){
           $(this).children(":first-child").addClass("loMasVendido");
         }else if($(this).children(":first-child").text() === "Rebajas"){
           $(this).children(":first-child").addClass("rebajas");
-        }else if($(this).children(":first-child").text() === "Dudas frecuentes"){
+        }else */
+        if($(this).children(":first-child").text() === "Dudas frecuentes"){
           $(this).children(":first-child").addClass("dudas");
         }else if($(this).children(":first-child").text() === "Mi cuenta"){
           $(this).children(":first-child").addClass("perfil").text('').append("<i class='fa fa-user' aria-hidden='true'></i>");
@@ -65,7 +66,7 @@
                   $("div.arrow_box").css({
                     position: "absolute",
                     left: $("i.fa-user").offset().left - ($("div.arrow_box").width()/2) +10,
-                    top: $("ul.nav").offset().top + $("ul.nav").height()+5}).slideToggle("slow");
+                    top: $("div.nav").offset().top + $("div.nav").height()+5}).slideToggle("slow");
                 },3500);
                 
                 setTimeout(function(){
@@ -97,7 +98,7 @@
             $("div.arrow_box").css({
                 position: "absolute",
                 left: $("i.fa-user").offset().left - ($("div.arrow_box").width()/2) +10,
-                top: $("ul.nav").offset().top + $("ul.nav").height()+5}).slideToggle("slow");
+                top: $("div.nav").offset().top + $("div.nav").height()+5}).slideToggle("slow");
           },
           function(){
             $("div.arrow_box").slideToggle("slow");
@@ -113,6 +114,8 @@
       /*$("ul.nav > li > a").wrap('<div class="agrupar"/>');
       $("<span class='separador' ></span>").insertAfter("ul.nav > li >.agrupar > a");*/
     });
+
+    
   </script>
   </head>
 
@@ -122,29 +125,130 @@
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button type="button" id="botonMenu" class="navbar-toggle collapsed" >
+            <i class="fa fa-bars" aria-hidden="true" style="color: #fff;"></i>
           </button>
-          <a class="brand" href="<?php bloginfo('url'); ?>"><img id="logo-img" src="<?php bloginfo('template_url'); ?>/img/logoRockher.png" alt=""/></a>
+          <div>
+          <a class="brand" href="<?php bloginfo('url'); ?>"><img id="logo-img" src="<?php bloginfo('template_url'); ?>/img/logoRockher.png" alt=""/></a></div>
+          <div class="nav navbar-nav">
+            <?php 
+              $idPaginas;
+              $links;
+              $page_ids=get_all_page_ids();
+              foreach($page_ids as $page)
+              {
+                $titulo = get_the_title($page);
+                $link = get_permalink($page);
+                $idPaginas[$titulo] = $page;
+                $links[$titulo] = $link; 
+                //echo "<script>console.log($link);></script>";
+                
+                
+                
+              }
+              $args = array(
+                'sort_order' => 'asc',
+                'sort_column' => 'menu_order',
+                'post_type' => 'page'
+                );
+              $pages = get_pages($args);
+              foreach ($pages as $pagina) {
+                # code...
+                $titulo = get_the_title($pagina);
+                
+                $slug = $pagina->post_name;
+                //echo "<script>console.log('$slug');></script>";
+                $link_page = $links[$titulo];
+                if($slug === 'inicio'){
+                  echo "<div class='menuPr'>";
+                  echo "<div id='$slug'>";
+                  echo "<a href='$link_page'>$titulo</a>";
+                  echo "</div>";
+                }
+                else if($slug === 'lo-vendido'){
+                  echo "</div>";
+                  echo "<div class='cont-btn'>";
+                  echo "<div id='$slug'>";
+                  echo "<a class='loMasVendido' href='$link_page'>$titulo</a>";
+                  echo "</div>";
+                }else if( $slug === 'rebajas'){
+                  echo "<div id='$slug'>";
+                  echo "<a class='rebajas' href='$link_page'>$titulo</a>";
+                  echo "</div>";
+                  echo "</div>";
+                }else if($slug != 'lookbook'){
+                  echo "<div id='$slug'>";
+                  echo "<a href='$link_page'>$titulo</a>";
+                  echo "</div>";
+                }
+                
+              }
 
+              global $post;
+              $post_slug=$post->post_name;
+              if(is_product_category() || is_shop()){
+                $post_slug = "tienda";
+              }
+
+            ?>
+            <script>
+            var slugg = '<?=$post_slug?>';
+            console.log("EL SLUG: "+slugg);
+              $("#<?=$post_slug?>").addClass("current_page_item");
+            </script>
+            <span id="logoPato"><a href="#"><img id="logo2-img" src="<?php bloginfo('template_url'); ?>/img/ducky.png" alt=""></a></span>
+          </div>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <title><?php wp_title('|',1,'right'); ?> <?php bloginfo('name'); ?></title>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <?php wp_list_pages(array('title_li' => '')); ?>
-            <span><a href="#"><img id="logo2-img" src="<?php bloginfo('template_url'); ?>/img/ducky.png" alt=""></a></span>
-          </ul>
+        <div class="">
+          
           
         </div><!-- /.navbar-collapse -->
         
       </div><!-- /.container-fluid -->
 
     </nav>
+    <script> 
+    if($("button#botonMenu").is(":visible")){
+            $(".menuPr").hide();
+          }
+      $(window).resize(function(){
+        if($("button#botonMenu").is(":visible")){
+            $(".menuPr").hide();
+        }else{
+          $(".menuPr").show();
+        }
+        if($(window).width() <= 815){
+          if($(".menuPr:not(:contains('.cont-btn,#logoPato'))")){
+            $(".cont-btn").detach().appendTo(".menuPr");
+            $("#logoPato").detach().insertAfter(".menuPr > .cont-btn");
+          }
+        }else{
+          console.log("ya es mayor");
+          if($(".menuPr:contains('.cont-btn')")){
+            $("#mi-cuenta").before($(".cont-btn"));
+            $("#logoPato").detach().insertAfter($("#contacto"));
+          }
+        }
+
+        
+      });
+         
+        $("button#botonMenu").click(function(){
+          console.log("presion");
+          $(".menuPr").slideToggle();
+        });
+
+        if($(window).width() <= 815){
+          console.log("El tamaño es menor a 795");
+          if($(".menuPr:not(:contains('.cont-btn'))")){
+            $(".cont-btn").detach().appendTo(".menuPr");
+            $("#logoPato").detach().insertAfter(".menuPr > .cont-btn");
+          }
+        }
+    </script>
     <!--<div id="padre" class="wrapper">-->
     <!--<div id="menu">
       <? wp_nav_menu(array( 'theme_location' => 'menu' )); ?>
@@ -154,9 +258,11 @@
         
       </h3>
     </div>
-    <div class="container" style="<?php
+    <?php
       $titulo =  get_the_title();
-      if($titulo != "Inicio"){
-        ?> top:70px;"
-      <?php } ?>" id="principal">
+      echo "<script>console.log('$titulo');</script>";
+      //if($titulo != "Inicio"){
+        $top = "70px";
+      //} ?>
+    <div class="container" style="margin-top: <?=$top ?>;" id="principal">
       

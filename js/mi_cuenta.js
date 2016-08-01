@@ -17,6 +17,7 @@ function placeHolder(element){
 		if($(this).find("label").length > 0){
 			$(this).find("label").each(function(){
 				etq = $(this).text();
+				console.log("ETQ: "+etq);
 				//$(this).hide();
 
 				if($(this).parent().find("input").length > 0){

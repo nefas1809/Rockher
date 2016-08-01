@@ -34,9 +34,9 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
       <div class="row" id="contedorMenuCentral">
       <!-- para resoluciones grandes-->
       <div class="row" id="menuCentral">
-        <div class="col-md-4" id="armaPedido"><div id="armaPedido2"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/armaPedido1.jpg" alt=""></div></div>
-        <div class="col-md-4" id="comoComprar"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/comoComprar.jpg" alt=""></div>
-        <div class="col-md-4" id="loNuevo"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/masNuevo.jpg" alt=""></div>
+        <div class="" id="armaPedido"><div id="armaPedido2"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/armaPedido1.jpg" alt=""></div></div>
+        <div class="" id="comoComprar"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/comoComprar.jpg" alt=""></div>
+        <div class="" id="loNuevo"><img class="img_back" src="<?php bloginfo('template_url'); ?>/img/masNuevo.jpg" alt=""></div>
       </div>
 
 
@@ -86,7 +86,7 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
 
 
       <div class="col-md-12" id="banner_lookbook">
-       <img src="<?php bloginfo('template_url'); ?>/img/lookbook.jpg" alt="" class="img_back">
+       <img src="<?php bloginfo('template_url'); ?>/img/lookbook.jpg" alt="" class="img_backLook">
       </div>
 
 

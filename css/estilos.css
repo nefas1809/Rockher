@@ -96,7 +96,7 @@ h1:after{
 }
 .container{
 	padding: 0px;
-	margin:; 0px;
+	margin: auto;
 }
 .nav-collapse{
 	justify-content: center;
@@ -182,9 +182,22 @@ ul.nav > li.current_page_item:after{
 #armaPedido, #comoComprar, #loNuevo,#banner_lookbook{
 	padding: 0px;
 	cursor: pointer;
+	
 }
 #armaPedido, #comoComprar, #loNuevo{
 		width: 33.3%;
+}
+#comoComprar, #loNuevo, #armaPedido, #banner_lookbook{
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
+}
+#armaPedido > div{
+	-webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    transition: all 1s ease;
 }
 
 #secciones,#perfil,#redes,#contacto_rap{
@@ -524,7 +537,7 @@ ul.nav > li:after{
 
 @keyframes moveOtherDivs {
 	from{right:0%;}
-	to{right:-101%;}
+	to{right:-201%;}
 }
 
 @keyframes mostrarPedido{
@@ -609,7 +622,7 @@ body.wp-admin{
 */
 
 .arrow_box {
-	position: fixed;
+	position: static;
 	background: #e2e91f;
 	z-index: 9999;
 
@@ -790,6 +803,9 @@ div.u-column1, div.u-column2{
 .futura{
 	font-family: "Futura", Fallback, sans-serif;
 }
+.abreu{
+	font-family: "Abreu", Fallback, sans-serif;	
+}
 
 .normal22{
 	font-size: 22px;
@@ -954,7 +970,7 @@ div.navbar-header{
 
 @media (min-width: 815px)
   and (max-width: 1600px),
-  and (min-device-width: 815px) 
+  (min-device-width: 815px) 
   and (max-device-width: 1600px) 
    { 
 
@@ -1063,7 +1079,7 @@ div.navbar-header{
 
 
 @media (max-width: 815px),
-  and (max-device-width: 815px) {
+(max-device-width: 815px) {
 
   	.navbar{
    		position: fixed !important;
@@ -1193,7 +1209,38 @@ div.navbar-header{
 	.nav{
 		width: auto;
 		margin:auto;
-	}		
+	}
+	#preguntas{
+		width: 90% !important;
+	}
+	.separador-horizontal{
+		width: 100% !important;
+	}
+
 }
 
 
+
+/*PARA ARMA PEDIDO, CLASES EXTRAS QUE SE PONEN CON EVENTOS*/
+
+.hide{
+
+	display: none;
+}
+
+.pedidoRow{
+	width: 100% !important;
+	display: flex;
+	-webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}
+
+.pedido-subDiv{
+	width: 20% !important;
+	-webkit-transition: all 0.6s ease;
+    -moz-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+}

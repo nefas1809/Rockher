@@ -51,7 +51,44 @@
 					</div>
 				</div>
 			</div>
-		</footer>	
+		</footer>
+		<script>
+			var seccionesAltoOrig = $("#secciones > div").height();
+			var perfilAltoOrig = $("#perfil > div").height();
+			var redesAltoOrig = $("#redes > div").height();
+			var contactoAltoOrig = $("#contacto_rap > div").height();
+
+		if($(window).width() > 767){
+			resizeFooter();
+		}
+		$(window).resize(function(){
+			if($(window).width() > 767){
+				resizeFooter();
+			}else{
+				resetHeight();
+			}
+		});
+
+
+
+		function resizeFooter(){
+			var seccionesAlto = $("#secciones > div").height();
+			var perfilAlto = $("#perfil > div").height();
+			var redesAlto = $("#redes > div").height();
+			var contactoAlto = $("#contacto_rap > div").height();
+			var mayor = Math.max(seccionesAlto, perfilAlto, redesAlto, contactoAlto);
+			$("#secciones > div, #perfil > div, #redes > div, #contacto_rap > div").css("height",mayor);
+		}
+
+		function resetHeight(){
+			$("#secciones > div").css("height",seccionesAltoOrig);
+			$("#perfil > div").css("height",perfilAltoOrig);
+			$("#redes > div").css("height",redesAltoOrig);
+			$("#contacto_rap > div").css("height",contactoAltoOrig);
+		}
+
+			
+		</script>	
 	</div><!--div padre-->
 	
 	<?php wp_footer(); ?>

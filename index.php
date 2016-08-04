@@ -93,8 +93,104 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
     </div> <!--div del contenedor del contenido principal-->
     <!--</div><!--div del contenedor padre (abarca contenido principal y menu)-->
 <script>
+
+
       $("#armaPedido2").click(function(){
-        if($("#armaPedido").hasClass("pressed")){
+        if($(window).width() > 1600){
+          armaPedidoHorizontal();
+        }else if($(window).width() > 815){
+          console.log("click when screen 815 or minus");
+          armaPedidoHorizontal();
+        }
+        
+    });
+  
+
+      $("#comoComprar").click(function(){
+        $("#myModal2").modal("show");
+      });
+
+function armaPedidoHorizontal(){
+  if($("#armaPedido").hasClass("pressed")){
+            $("#armaPedido").removeClass("pressed");
+            setTimeout(function(){
+              $("#pedidoFront").addClass("ocultarPedidoFront");
+            },150);
+            setTimeout(function(){
+              $("#pedidoFull").addClass("ocultarPedidoFull");
+            },250);
+            setTimeout(function(){
+              $("#pedidoSudadera").addClass("ocultarPedidoSudadera");
+            },350);
+            setTimeout(function(){
+              $("#pedidoSpring").addClass("ocultarPedidoSpring");
+            },450);
+            setTimeout(function(){
+              $("#armaPedido > #pedidoFront, #armaPedido > #pedidoFull, #armaPedido > #pedidoSpring, #armaPedido > #pedidoSudadera").remove();
+              
+            },800);
+            setTimeout(function(){
+              $("#armaPedido").removeClass("row").addClass("col-md-4").removeClass("pedidoRow")/*css({display:"block", width:"33.3%"})*/.fadeIn('slow',function(){
+                 $("#armaPedido div").removeClass("pedido-subDiv")/*animate({width: "100%"},500)*/;
+                 $("#armaPedido2 img").attr("src","<? bloginfo("template_url"); ?>/img/armaPedido1.jpg");
+              });
+              $("#armaPedido2 img").attr("src","<? bloginfo("template_url"); ?>/img/armaPedido1.jpg").stop(true,true).hide().fadeIn('slow');
+              $("#comoComprar").removeClass("hide")/*css("width","33.3%")*/.show("slow");
+              $("#loNuevo").removeClass("hide")/*css("width","33.3%").show("slow")*/;
+            },900);
+            
+
+
+
+        }else{
+          $("#armaPedido").addClass("pressed");
+
+          //ocultar los otros 2 elementos, el de lo mas vendido y como comprar
+          $("#comoComprar, #loNuevo").addClass("hide");
+              $("#armaPedido").removeClass("col-md-4").addClass("row pedidoRow")/*.css({width:"100%", display:"flex"})*/;
+              $("#armaPedido div").addClass("pedido-subDiv")/*animate({width: "20%"},600)*/;
+              $("#armaPedido2 img").attr("src","<? bloginfo("template_url"); ?>/img/armaPedido2.jpg").stop(true,true).hide().fadeIn('slow', function(){
+                console.log("nionoinxiwe");
+                  $("#pedidoSpring").clone().appendTo("#armaPedido").addClass("mostrarPedidoSpring");
+                  setTimeout(function(){
+                    $("#pedidoSudadera").clone().appendTo("#armaPedido").addClass("mostrarPedidoSudadera");
+                  },200);
+                  setTimeout(function(){
+                    $("#pedidoFull").clone().appendTo("#armaPedido").addClass("mostrarPedidoFull");
+                  },250);
+                  setTimeout(function(){
+                    $("#pedidoFront").clone().appendTo("#armaPedido").addClass("mostrarPedidoFront");
+                  },300);
+              });
+              
+              //$(pedidoFull).appendTo(this);
+              //$("#armaPedido").fadeIn(500);
+            
+            //$("#armaPedido").removeClass("col-md-4").addClass("row").children(":first-child").animate({width: "20%"}); 
+            
+          //});
+          
+
+
+          /*$("#armaPedido").fadeOut(1000, function(){
+            $("#armaPedido").removeClass("col-md-4").addClass("row");
+            $("#armaPedido img").attr('src','<? bloginfo("template_url"); ?>/img/armaPedido2.jpg');
+            $("#armaPedido").fadeIn({queue: false, duration:"slow"}); 
+            $("#armaPedido").children(":first-child").animate({width: "20%"},'slow'); //css("width","20%");
+            
+             
+          });
+          
+          $("#comoComprar, #loNuevo").addClass("hideDivs");
+          $("#armaPedido").addClass("pressed");*/
+          //$("#contenedorDesplegable").addClass("mostrarPedido");
+          //$("#contenedorDesplegable").addClass("showDesplegable");
+          
+        }
+}
+
+/*function armaPedidoHorizontal(){
+  if($("#armaPedido").hasClass("pressed")){
             $("#armaPedido").removeClass("pressed");
             setTimeout(function(){
               $("#pedidoFront").addClass("ocultarPedidoFront");
@@ -169,11 +265,7 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
           //$("#contenedorDesplegable").addClass("mostrarPedido");
           //$("#contenedorDesplegable").addClass("showDesplegable");
           
-        }
-      });
-
-      $("#comoComprar").click(function(){
-        $("#myModal2").modal("show");
-      });
-    </script>
+        //}
+//}
+</script>
 <?php get_footer(); ?>

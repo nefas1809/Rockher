@@ -98,10 +98,10 @@
             $("div.arrow_box").css({
                 position: "absolute",
                 left: $("i.fa-user").offset().left - ($("div.arrow_box").width()/2) +10,
-                top: $("div.nav").offset().top + $("div.nav").height()+5}).slideToggle("slow");
+                top: $("div.nav").offset().top + $("div.nav").height()+5}).stop().slideToggle("slow");
           },
           function(){
-            $("div.arrow_box").slideToggle("slow");
+            $("div.arrow_box").stop().slideToggle("slow");
           }
         );
 
@@ -193,7 +193,6 @@
             ?>
             <script>
             var slugg = '<?=$post_slug?>';
-            console.log("EL SLUG: "+slugg);
               $("#<?=$post_slug?>").addClass("current_page_item");
             </script>
             <span id="logoPato"><a href="#"><img id="logo2-img" src="<?php bloginfo('template_url'); ?>/img/ducky.png" alt=""></a></span>
@@ -226,7 +225,6 @@
             $("#logoPato").detach().insertAfter(".menuPr > .cont-btn");
           }
         }else{
-          console.log("ya es mayor");
           if($(".menuPr:contains('.cont-btn')")){
             $("#mi-cuenta").before($(".cont-btn"));
             $("#logoPato").detach().insertAfter($("#contacto"));
@@ -237,12 +235,10 @@
       });
          
         $("button#botonMenu").click(function(){
-          console.log("presion");
           $(".menuPr").slideToggle();
         });
 
         if($(window).width() <= 815){
-          console.log("El tamaño es menor a 795");
           if($(".menuPr:not(:contains('.cont-btn'))")){
             $(".cont-btn").detach().appendTo(".menuPr");
             $("#logoPato").detach().insertAfter(".menuPr > .cont-btn");
@@ -261,8 +257,17 @@
     <?php
       $titulo =  get_the_title();
       echo "<script>console.log('$titulo');</script>";
-      //if($titulo != "Inicio"){
+      if($titulo != "Inicio"){
         $top = "70px";
-      //} ?>
-    <div class="container" style="margin-top: <?=$top ?>;" id="principal">
+    ?>
+      <div class="container" style="margin-top: <?=$top ?>;" id="principal">
+    <?    
+      } else{
+    ?>
+        <div class="container" id="principal">
+    <?    
+      }
+
+    ?>
+    
       

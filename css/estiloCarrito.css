@@ -102,3 +102,27 @@ div.wc-proceed-to-checkout{
 td.actions > input{
 	float: right;
 }
+
+.imagenCarrito{
+	width: 30%;
+}
+
+@media (min-width: 815px)
+  and (max-width: 1600px),
+  (min-device-width: 815px) 
+  and (max-device-width: 1600px){
+	.imagenCarrito{
+		width: 80%;
+	}
+}
+
+@media (max-width: 815px),
+(max-device-width: 815px) {
+	table.shop_table > thead{
+		display: none;
+	}
+
+	.woocommerce table.shop_table_responsive tr td::before, .woocommerce-page table.shop_table_responsive tr td::before{
+		content: "";
+	}
+} 

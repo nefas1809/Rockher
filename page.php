@@ -25,7 +25,7 @@
 			console.log("ES CARRO");
 			$("img").removeAttr("width");
 			$("img").removeAttr("height");
-			$("img.attachment-shop_thumbnail").css("width","30%");
+			$("img.attachment-shop_thumbnail").addClass("imagenCarrito");
 				
 	<?
 		}else if(is_checkOut()){

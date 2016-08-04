@@ -14,12 +14,19 @@ function wpbootstrap_scripts_with_jquery()
 	wp_register_style("estiloTienda", get_template_directory_uri() . '/css/estiloTienda.css' );
 	wp_register_style("estiloCarrito", get_template_directory_uri() . '/css/estiloCarrito.css' );
 	wp_register_style("contactoResponsive", get_template_directory_uri() . '/css/contacto.responsive.css' );
+	wp_register_style('prendas', get_template_directory_uri() . '/css/estilos_prendas.css' );
 	wp_enqueue_style('bootstrap');
 	wp_enqueue_style('bootstrap_resp');
 	wp_enqueue_style('estilos');
 	wp_enqueue_style('estiloTienda');
 	wp_enqueue_style('estiloCarrito');
 	wp_enqueue_style('contactoResponsive');
+	if ( function_exists( 'is_woocommerce' ) ) {
+		if(is_page("estilo-de-prenda")){
+			wp_enqueue_style('prendas');	
+		}
+		
+	}
 	// Register the script like this for a theme:
 	wp_register_script( 'jqueryScript', get_template_directory_uri() . '/js/jquery-3.0.0.js', array( 'jquery' ) );
 	wp_register_script( 'custom-script', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ) );

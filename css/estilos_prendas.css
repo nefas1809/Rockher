@@ -59,7 +59,7 @@
 	padding: 0px !important;
 }
 
-#galeria{
+#galeriaPrenda{
 	display: flex;
 	flex-flow: column;
 	margin-left: 10px;
@@ -136,3 +136,26 @@
 /*#imgPrincipal{
 	width: 100%;
 }*/
+
+@media (min-width: 815px)
+  and (max-width: 1600px),
+  (min-device-width: 815px) 
+  and (max-device-width: 1600px){
+	
+
+}
+
+
+
+@media (max-width: 815px),
+(max-device-width: 815px) {
+	#contentInfo{
+		flex-flow: column;
+	}
+	#descPrenda{
+		align-items: center;
+	}
+	#prendaInfoEstiloH2{
+		text-align: center;
+	}
+}

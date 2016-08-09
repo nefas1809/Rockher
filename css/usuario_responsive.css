@@ -1,0 +1,187 @@
+@media (max-width: 815px),
+(max-device-width: 815px) {
+
+	#customer_login{
+		flex-flow: column;
+		padding: 0px;
+	}
+	.separador{
+		height: 0px;
+		border-bottom: 3px solid #c3c3c3;
+		width: 90%;
+		margin:40px auto;
+	}
+	.u-column1, .u-column2{
+		text-align: center;
+		padding: 0px;
+	}
+	form.login > p.woocommerce-FormRow ,.lost_password, form.register > p.woocommerce-FormRow{
+		max-width: 80%;
+		margin:auto;
+		padding: 10px 0px;
+	}
+	#password{
+		margin-bottom: 35px;
+	}
+
+	p.form-row.btnFull{
+		padding: 0px;
+	}
+
+	.btnFull{
+		width: 100% !important;
+		/*padding: 0px !important;*/
+	}
+
+	
+
+
+}
+
+@media (min-width: 815px)
+  and (max-width: 1600px),
+  (min-device-width: 815px) 
+  and (max-device-width: 1600px),
+  (max-width: 815px),
+  (max-device-width: 815px) 
+   {
+	
+		.woocommerce-MyAccount-navigation > ul{
+		display: inline-block;
+		width: 100%;
+		padding-left: 0px;
+		background-color: transparent;
+	}
+	.woocommerce-MyAccount-navigation > ul > li > a{
+		background-color: transparent !important;
+		color:#666666 !important;
+		font-family: "Futura", Fallback, sans-serif !important;
+	}
+	.woocommerce-MyAccount-navigation > ul > li{
+		-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+		box-shadow:inset 0px 1px 0px 0px #ffffff;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9));
+		background:-moz-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+		background:-webkit-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+		background:-o-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+		background:-ms-linear-gradient(top, #f9f9f9 5%, #e9e9e9 100%);
+		background:linear-gradient(to bottom, #f9f9f9 5%, #e9e9e9 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#f9f9f9', endColorstr='#e9e9e9',GradientType=0);
+		background-color:#f9f9f9;
+		-moz-border-radius:6px;
+		-webkit-border-radius:6px;
+		/*border-radius:6px;*/
+		border:1px solid #dcdcdc;
+		display:inline-block;
+		cursor:pointer;
+		color:#666666;
+		font-family:Arial;
+		font-size:15px;
+		font-weight:bold;
+		/*padding:6px 24px;*/
+		text-decoration:none;
+		text-shadow:0px 1px 0px #ffffff;width: 100%;
+		margin:0px;
+		/*padding: 0px;
+		
+		-moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+		-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+		box-shadow: 0px 1px 0px 0px #f0f7fa;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+		background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+		background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+		background-color:#33bdef;
+		border:1px solid #057fd0;
+		display:inline-block;
+		cursor:pointer;
+		/*color:#ffffff;
+		font-family:Arial;
+		font-size:15px;
+		font-weight:bold;
+		padding:6px 24px;
+		text-decoration:none;
+		text-shadow:0px -1px 0px #5b6178;*/
+	}
+
+	.woocommerce-MyAccount-navigation > ul > li:hover{
+		/*background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+		background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+		background-color:#019ad2;*/
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9));
+		background:-moz-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+		background:-webkit-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+		background:-o-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+		background:-ms-linear-gradient(top, #e9e9e9 5%, #f9f9f9 100%);
+		background:linear-gradient(to bottom, #e9e9e9 5%, #f9f9f9 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9e9e9', endColorstr='#f9f9f9',GradientType=0);
+		background-color:#e9e9e9;
+	}
+
+	.woocommerce-MyAccount-navigation > ul > li.is-active{
+		border-bottom: none;
+		background-color:#33bdef;
+		border:1px solid #057fd0;
+		background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+		background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+		background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+		background-color:#019ad2;
+		
+	}
+	 .woocommerce-MyAccount-navigation > ul > li.is-active > a{
+	 	color:#fff !important;
+	 }
+
+   }
+
+
+.myButton {
+	-moz-box-shadow: 0px 1px 0px 0px #f0f7fa;
+	-webkit-box-shadow: 0px 1px 0px 0px #f0f7fa;
+	box-shadow: 0px 1px 0px 0px #f0f7fa;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #33bdef), color-stop(1, #019ad2));
+	background:-moz-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-webkit-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-o-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:-ms-linear-gradient(top, #33bdef 5%, #019ad2 100%);
+	background:linear-gradient(to bottom, #33bdef 5%, #019ad2 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#33bdef', endColorstr='#019ad2',GradientType=0);
+	background-color:#33bdef;
+	border:1px solid #057fd0;
+	display:inline-block;
+	cursor:pointer;
+	/*color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;*/
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:0px -1px 0px #5b6178;
+}
+.myButton:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #019ad2), color-stop(1, #33bdef));
+	background:-moz-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-webkit-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-o-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:-ms-linear-gradient(top, #019ad2 5%, #33bdef 100%);
+	background:linear-gradient(to bottom, #019ad2 5%, #33bdef 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#019ad2', endColorstr='#33bdef',GradientType=0);
+	background-color:#019ad2;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}

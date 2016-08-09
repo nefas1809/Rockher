@@ -99,7 +99,7 @@ $imagenes = [];
         		<div id="estiloImagenes" class="col-lg-5 col-sm-12">
         		<!--class="col-md-5 col-sm-6 col-xs-6"el de abajo--> 
         		<div id="divImgPrinc" class="col-md-8 col-sm-6 col-xs-6"><img src="" alt="" id="imgPrincipal"></div>
-        		<div id="galeria" class="col-md-2 col-sm-2 col-xs-2">
+        		<div id="galeriaPrenda" class="col-md-2 col-sm-2 col-xs-2">
         			
         		</div>
         		</div>
@@ -169,10 +169,10 @@ $imagenes = [];
 
 		function createGallery(idPrenda){
 			$("#imgPrincipal").attr("src",arrayImg[idPrenda][0]);
-			$("#galeria").html("");
+			$("#galeriaPrenda").html("");
 			for (var i = 0; i < arrayImg[idPrenda].length; i++) {
 				$newImg = "<div class='img_gal'><img src="+arrayImg[idPrenda][i]+"></div>";
-				$("#galeria").append($newImg);
+				$("#galeriaPrenda").append($newImg);
 			}
 		}
 
@@ -181,7 +181,7 @@ $imagenes = [];
 			$("#descPrenda").find(".more-link").remove();
 		}
 
-		$("#galeria").click(function(evt){
+		$("#galeriaPrenda").click(function(evt){
 			var child = $(evt.target);
 			if(child.hasClass("img_gal") | child.is("img")){
 				var src = child.attr("src");

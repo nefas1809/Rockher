@@ -131,70 +131,76 @@
           <div>
           <a class="brand" href="<?php bloginfo('url'); ?>"><img id="logo-img" src="<?php bloginfo('template_url'); ?>/img/logoRockher.png" alt=""/></a></div>
           <div class="nav navbar-nav">
-            <?php 
-              $idPaginas;
-              $links;
-              $page_ids=get_all_page_ids();
-              foreach($page_ids as $page)
-              {
-                $titulo = get_the_title($page);
-                $link = get_permalink($page);
-                $idPaginas[$titulo] = $page;
-                $links[$titulo] = $link; 
-                //echo "<script>console.log($link);></script>";
-                
-                
-                
-              }
-              $args = array(
-                'sort_order' => 'asc',
-                'sort_column' => 'menu_order',
-                'post_type' => 'page'
-                );
-              $pages = get_pages($args);
-              foreach ($pages as $pagina) {
-                # code...
-                $titulo = get_the_title($pagina);
-                
-                $slug = $pagina->post_name;
-                //echo "<script>console.log('$slug');></script>";
-                $link_page = $links[$titulo];
-                if($slug === 'inicio'){
-                  echo "<div class='menuPr'>";
-                  echo "<div id='$slug'>";
-                  echo "<a href='$link_page'>$titulo</a>";
-                  echo "</div>";
-                }
-                else if($slug === 'lo-vendido'){
-                  echo "</div>";
-                  echo "<div class='cont-btn'>";
-                  echo "<div id='$slug'>";
-                  echo "<a class='loMasVendido' href='$link_page'>$titulo</a>";
-                  echo "</div>";
-                }else if( $slug === 'rebajas'){
-                  echo "<div id='$slug'>";
-                  echo "<a class='rebajas' href='$link_page'>$titulo</a>";
-                  echo "</div>";
-                  echo "</div>";
-                }else if($slug != 'lookbook'){
-                  echo "<div id='$slug'>";
-                  echo "<a href='$link_page'>$titulo</a>";
-                  echo "</div>";
-                }
-                
-              }
-
-              global $post;
-              $post_slug=$post->post_name;
-              if(is_product_category() || is_shop()){
-                $post_slug = "tienda";
-              }
+            <?
+              if(!is_product()){
 
             ?>
-            <script>
-            var slugg = '<?=$post_slug?>';
-              $("#<?=$post_slug?>").addClass("current_page_item");
-            </script>
+              <?php 
+                $idPaginas;
+                $links;
+                $page_ids=get_all_page_ids();
+                foreach($page_ids as $page)
+                {
+                  $titulo = get_the_title($page);
+                  $link = get_permalink($page);
+                  $idPaginas[$titulo] = $page;
+                  $links[$titulo] = $link; 
+                  //echo "<script>console.log($link);></script>";
+                  
+                  
+                  
+                }
+                $args = array(
+                  'sort_order' => 'asc',
+                  'sort_column' => 'menu_order',
+                  'post_type' => 'page'
+                  );
+                $pages = get_pages($args);
+                foreach ($pages as $pagina) {
+                  # code...
+                  $titulo = get_the_title($pagina);
+                  
+                  $slug = $pagina->post_name;
+                  //echo "<script>console.log('$slug');></script>";
+                  $link_page = $links[$titulo];
+                  if($slug === 'inicio'){
+                    echo "<div class='menuPr'>";
+                    echo "<div id='$slug'>";
+                    echo "<a href='$link_page'>$titulo</a>";
+                    echo "</div>";
+                  }
+                  else if($slug === 'lo-vendido'){
+                    echo "</div>";
+                    echo "<div class='cont-btn'>";
+                    echo "<div id='$slug'>";
+                    echo "<a class='loMasVendido' href='$link_page'>$titulo</a>";
+                    echo "</div>";
+                  }else if( $slug === 'rebajas'){
+                    echo "<div id='$slug'>";
+                    echo "<a class='rebajas' href='$link_page'>$titulo</a>";
+                    echo "</div>";
+                    echo "</div>";
+                  }else if($slug != 'lookbook'){
+                    echo "<div id='$slug'>";
+                    echo "<a href='$link_page'>$titulo</a>";
+                    echo "</div>";
+                  }
+                  
+                }
+
+              }
+
+                global $post;
+                $post_slug=$post->post_name;
+                if(is_product_category() || is_shop()){
+                  $post_slug = "tienda";
+                }
+
+              ?>
+              <script>
+              var slugg = '<?=$post_slug?>';
+                $("#<?=$post_slug?>").addClass("current_page_item");
+              </script>
             <span id="logoPato"><a href="#"><img id="logo2-img" src="<?php bloginfo('template_url'); ?>/img/ducky.png" alt=""></a></span>
           </div>
         </div>
@@ -233,10 +239,15 @@
 
         
       });
-         
-        $("button#botonMenu").click(function(){
-          $(".menuPr").slideToggle();
-        });
+        <? if(!is_product()){
+        ?>
+              $("button#botonMenu").click(function(){
+                $(".menuPr").slideToggle();
+              });
+        <?  
+        }
+        ?> 
+        
 
         if($(window).width() <= 815){
           if($(".menuPr:not(:contains('.cont-btn'))")){

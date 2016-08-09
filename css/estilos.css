@@ -785,7 +785,7 @@ div.u-column1 form, div.u-column2 form{
 
 }
 div.u-column1, div.u-column2{
-	width: 40% !important;
+	/*width: 40% !important;*/
 }
 
 
@@ -794,7 +794,7 @@ div.u-column1, div.u-column2{
 }*/
 
 #customer_login{
-	width: 70%;
+	/*width: 70%;*/
 	margin: auto;
 	display: flex;
 	justify-content: center;

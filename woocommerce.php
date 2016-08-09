@@ -1,5 +1,7 @@
 
-<?php get_header(); ?>
+<?php get_header(); 
+if(!is_product()){
+?>
 
 
 <div id="contenedorTienda">
@@ -91,6 +93,101 @@
 <div id="getProducto" style="display:none;">
 	
 </div>
+<?
+}else{
+?>
+	<div id="contenedorTienda">
+
+	<div id="contenedorMenu" class="row">
+		<div id="menuLateral">
+			<?php get_sidebar(); ?>
+		</div>
+		<div id="imgCatalogo"><img src="<?php bloginfo('template_url') ?>/img/etiquetaCatalogo.png" alt=""></div>	
+	</div>
+	<div id="contenedorProductos">
+		<div class="row">
+		<!--<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+			<h1><?php the_title(); ?></h1>
+		  	<?php the_content(); ?>
+
+		<?php endwhile; else: ?>
+			<p><?php _e('Sorry, this page does not exist.'); ?></p>
+		<?php endif; ?>-->
+		<?php woocommerce_content();?>
+		
+  		</div>
+  		<div id='opaco'></div>
+	</div>
+
+
+</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="myModalProd">
+  <div class="modal-dialog container">
+    <div class="modal-content row">
+      <!--<div class="modal-header">
+        
+      </div>-->
+      <div class="modal-body row" id="showDetails">
+        <div id="productInfo row">
+        	<div style="display:flex;">
+        		<h2 id="productInfoH2"></h2>
+        		<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--><i id="i-cerrarDetalles" class="fa fa-times close" data-dismiss="modal" aria-label="Close" aria-hidden="true" style="font-size: 32px;"></i><!--</button>-->
+        	</div>
+        	
+        	<div id="contentInfo" class="col-md-12">
+        		<div id="productInfoImg" class="col-lg-4 col-sm-12">
+        		<img src="" alt="">
+        		</div>
+        		<div id="productInfoEstilo" class="col-lg-4 col-sm-6">
+        			<h3 id="productInfoEstiloH2">Estilo de prenda</h3>
+
+        			<!--<img src="<? bloginfo('template_directory'); ?>/img/4.png" alt="">-->
+        			<div id="estilos" class="col-md-12">
+        				
+        			</div>
+        		</div>
+        		<div id="productInfoExtras" class="col-lg-4 col-sm-6">
+        			<div id="precio">
+        				<h4></h4>
+        				<span>Menudeo</span>
+        			</div>
+        			<div id="productInfoColores">
+        				<span>Colores</span>
+        				<div id="colores">
+	        				
+	        			</div>
+        			</div>
+        			<div id="productInfoTallas">
+        				<span>Tallas</span>
+	        			<div id="tallas">
+	        	
+	        			</div>
+        			</div>
+        			<div id="productInfoCantidad">
+        				<span>Cantidad</span>
+	        			<div id="cantidad">
+	        				<input type="number" step="1" min="1" value="1">
+	        			</div>
+	        		</div>
+        			<div id="agregarProd">
+        				<a href=""><img src="<? bloginfo('template_directory') ?>/img/agregarCarrito.png" alt=""></a>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+      </div>
+      
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="getProducto" style="display:none;">
+	
+</div>
+<?
+}
+?>
 
 
 
@@ -135,7 +232,11 @@
 			   url:$link_ir,
 			   type:'GET',
 			   success: function(data){
-			       $('#showDetails').find($('#productInfoImg').html($(data)));
+			   		var obtenido = $(data).find("#contenedorProductos").html();
+			   		console.log("/*/*/*/*/*/*/*/*/*/*/*/*/*/*");
+			   		console.log(obtenido);
+			       $('#showDetails').find($('#productInfoImg')).html(data);
+			       	//html($(data).find("#contenedorProductos").html()));
 			      //$('#showDetails').html(myhtml);
 			       $("#showDetails").find(('#productInfoImg')).find("head").remove();
 			       $('#showDetails').find("#contenedorMenu").remove();
@@ -280,7 +381,10 @@ $('#myModal').on('hidden.bs.modal', function () {
 
 <?
 	if(is_product_category() || is_shop()){
+		wp_enqueue_script('prettyPhoto');
+		wp_enqueue_script('prettyPhoto-init');
 ?>
+
 		console.log("es category o tienda");
 		$("div.product").addClass("col-lg-3 col-md-4 col-sm-6 col-xs-12");
 		$("ul.products").addClass("row");
@@ -335,10 +439,25 @@ $('#myModal').on('hidden.bs.modal', function () {
 			
 			
 		});
+
+
+		$("#agregar > a").click(function(e){
+			console.log("Presiono el de añadir al carro");
+			e.preventDefault();
+			$("#myModal").find("button.single_add_to_cart_button").click();
+			console.log("se encontro el boton");
+			
+		});
 <?
-	}
+	}else if(is_product()){
+	?>	
+		console.log("estas viendo un producto");
+	<?		
+		}
+
+
+	?>
 	
-?>
 
 /*$("#i-cerrarDetalles").click(function(){
 	/*$("div.div-detalle").slideToggle("slow").remove();
@@ -347,13 +466,7 @@ $('#myModal').on('hidden.bs.modal', function () {
 	$("#myModal").hide();
 });*/
 
-$("#agregar > a").click(function(e){
-	console.log("Presiono el de añadir al carro");
-	e.preventDefault();
-	$("#myModal").find("button.single_add_to_cart_button").click();
-	console.log("se encontro el boton");
-	
-});
+
 
 $("div#cantidad > input").change(function(){
 	$("#myModal").find("div.quantity > input").val($(this).val()).change();
@@ -388,3 +501,6 @@ $("div.loopDeContentProduct > a > img").each(function(){
 </script>
 
 <?php get_footer(); ?>
+<script>
+	leerScripts();
+</script>

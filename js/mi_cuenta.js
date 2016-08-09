@@ -67,6 +67,21 @@ $(document).ready(function(){
 		$(this).addClass("col-md-6").removeClass("form-row-first form-row-last form-row-wide").css({"padding":"3px 10px 3px 30px", "margin-top":"15px"});
 	});
 	$(".woocommerce-MyAccount-content > form > div > .clear").css("display","none");
+	if($(window).width() <= 815){
+		//$(".separador").height(0);
+		$(".separador").css({"height":0, "margin":"40px auto"});
+	}
+
+	$(window).resize(function(){
+		if($(window).width() <= 815){
+			$(".separador").css({"height":0, "margin":"40px auto"});
+			//$(".separador").height(0);
+		}else{
+			$(".separador").css({"height":alturaSeparador, "margin":"auto 60px"});
+			//$(".separador").height(alturaSeparador).width($("div.u-column2"));
+		}
+	});
+
 
 
 });

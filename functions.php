@@ -7,40 +7,81 @@ register_nav_menus(array('menu' => __('menu')));
 
 function wpbootstrap_scripts_with_jquery()
 {
-	wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css' );
-	wp_register_style('bootstrap_resp', get_template_directory_uri() . '/css/bootstrap-responsive.css' );
-	wp_register_style('estiloAdmin', get_template_directory_uri() . '/css/estiloAdmin.css' );
-	wp_register_style("estilos", get_template_directory_uri() . '/css/estilos.css' );
-	wp_register_style("estiloTienda", get_template_directory_uri() . '/css/estiloTienda.css' );
-	wp_register_style("estiloCarrito", get_template_directory_uri() . '/css/estiloCarrito.css' );
-	wp_register_style("contactoResponsive", get_template_directory_uri() . '/css/contacto.responsive.css' );
-	wp_register_style('prendas', get_template_directory_uri() . '/css/estilos_prendas.css' );
-	wp_enqueue_style('bootstrap');
-	wp_enqueue_style('bootstrap_resp');
-	wp_enqueue_style('estilos');
-	wp_enqueue_style('estiloTienda');
-	wp_enqueue_style('estiloCarrito');
-	wp_enqueue_style('contactoResponsive');
+	$assets_path          = str_replace( array( 'http:', 'https:' ), '', WC()->plugin_url() ) . '/assets/';
+	$suffix               = defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ? '' : '.min';
+
 	if ( function_exists( 'is_woocommerce' ) ) {
 		if(is_page("estilo-de-prenda")){
 			wp_enqueue_style('prendas');	
 		}
+		if(is_page("mi-cuenta")){
+			wp_enqueue_style('usuarioResponsive');	
+		}
+		//if(!is_product()){
+			wp_register_style('bootstrap', get_template_directory_uri() . '/css/bootstrap.css' );
+			wp_register_style('bootstrap_resp', get_template_directory_uri() . '/css/bootstrap-responsive.css' );
+			wp_register_style('estiloAdmin', get_template_directory_uri() . '/css/estiloAdmin.css' );
+			wp_register_style("estilos", get_template_directory_uri() . '/css/estilos.css' );
+			wp_register_style("estiloTienda", get_template_directory_uri() . '/css/estiloTienda.css' );
+			wp_register_style("estiloCarrito", get_template_directory_uri() . '/css/estiloCarrito.css' );
+			wp_register_style("contactoResponsive", get_template_directory_uri() . '/css/contacto.responsive.css' );
+			wp_register_style("usuarioResponsive", get_template_directory_uri() . '/css/usuario_responsive.css' );
+			wp_register_style('prendas', get_template_directory_uri() . '/css/estilos_prendas.css' );
+			wp_enqueue_style('bootstrap');
+			wp_enqueue_style('bootstrap_resp');
+			wp_enqueue_style('estilos');
+			wp_enqueue_style('estiloTienda');
+			wp_enqueue_style('estiloCarrito');
+			wp_enqueue_style('contactoResponsive');
+			wp_enqueue_style('usuarioResponsive');
+			wp_enqueue_style('prendas');
+			// Register the script like this for a theme:
+			wp_register_script( 'jqueryScript', get_template_directory_uri() . '/js/jquery-3.0.0.js', array( 'jquery' ) );
+			wp_register_script( 'custom-script', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ) );
+			
+			wp_register_script('scriptTallas',get_template_directory_uri().'/js/eventosTallas.js', array( 'jquery' ));
+			wp_register_script('script_menu',get_template_directory_uri().'/js/script_menu.js', array( 'jquery' ));
+			
+				wp_enqueue_script( 'jqueryScript' );
+				wp_enqueue_script('script_menu');
+				wp_enqueue_script( 'custom-script' );
+				wp_enqueue_script('scriptTallas' );
+			
+			
+
+
+			
+		//}
 		
+		if(is_product()){
+			//removerScriptsProducto();
+			//add_action("wp_print_scripts","removerScriptsProducto" );
+			/*remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+			remove_action( 'wp_print_styles', 'print_emoji_styles' );
+			wp_dequeue_script("jquery" );*/
+			//wp_dequeue_script("jqueryScript" );
+			/*wp_dequeue_script("bootstrap" );
+			wp_dequeue_script("scriptTallas" );
+			//wp_dequeue_script("" );*/
+		}
+		if(is_product_category() || is_shop()){
+
+			/*echo "<script>console.log('ESTO ES DESDE FUNCTIONS Y ESTAMOS EN CATEGORY O SHOP');</script>";
+			wp_enqueue_script( 'wc-add-to-cart', $frontend_script_path . 'add-to-cart' . $suffix . '.js' );
+			wp_enqueue_script('wc-add-to-cart-variation');
+			wp_enqueue_script( 'prettyPhoto', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto' . $suffix . '.js', array( 'jquery' ), '3.1.6', true );
+			wp_enqueue_script( 'prettyPhoto-init', $assets_path . 'js/prettyPhoto/jquery.prettyPhoto.init' . $suffix . '.js', array( 'jquery','prettyPhoto' ) );
+			wp_enqueue_script( 'wc-single-product' );
+
+			//wp_enqueue_script('prettyPhoto-init');*/
+		}
 	}
-	// Register the script like this for a theme:
-	wp_register_script( 'jqueryScript', get_template_directory_uri() . '/js/jquery-3.0.0.js', array( 'jquery' ) );
-	wp_register_script( 'custom-script', get_template_directory_uri() . '/js/bootstrap.js', array( 'jquery' ) );
 	
-	wp_register_script('scriptTallas',get_template_directory_uri().'/js/eventosTallas.js', array( 'jquery' ));
 	
 	
 
 	// For either a plugin or a theme, you can then enqueue the script:
-	wp_enqueue_script( 'jqueryScript' );
-	wp_enqueue_script( 'custom-script' );
 	
-	
-	wp_enqueue_script('scriptTallas' );
 	//wp_deregister_script("jquery" );
 	//wp_dequeue_script( 'jquery' );
 	/*wp_enqueue_script('add-to-cart-variation', plugins_url( 'woocommerce/assests/js/frontend/add-to-cart-variation.min.js', __FILE__ ), array( 'jquery'), false, true );*/
@@ -60,6 +101,12 @@ function wpbootstrap_scripts_with_jquery()
 
 }
 
+function removerScriptsProducto(){
+	remove_action( 'wp_head', 'print_jquery_detection_script', 7 );
+	wp_enqueue_script("");
+	//wp_deregister_script("jquery" );
+	//wp_dequeue_script(" $handle" );
+}
 
 
 
@@ -103,16 +150,16 @@ function my_custom_admin_js(){
 add_action('admin_head', 'my_custom_admin_js');
 /*add_action('admin_head', 'my_custom_admin_styles');*/
 
-add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );
+/*add_action( 'wp_enqueue_scripts', 'child_manage_woocommerce_styles', 99 );*/
  
 function child_manage_woocommerce_styles() {
  //remove generator meta tag
  remove_action( 'wp_head', array( $GLOBALS['woocommerce'], 'generator' ) );
  
  //first check that woo exists to prevent fatal errors
- if ( function_exists( 'is_woocommerce' ) ) {
+ /*if ( function_exists( 'is_woocommerce' ) ) {
  //dequeue scripts and styles
- if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() ) {
+ /*if ( ! is_woocommerce() && ! is_cart() && ! is_checkout() && !is_product_category() &&  !is_shop()) {
  wp_dequeue_style( 'woocommerce_frontend_styles' );
  wp_dequeue_style( 'woocommerce_fancybox_styles' );
  wp_dequeue_style( 'woocommerce_chosen_styles' );
@@ -134,7 +181,7 @@ function child_manage_woocommerce_styles() {
  wp_dequeue_script( 'fancybox' );
  wp_dequeue_script( 'jqueryui' );
  }
- }
+ }*/
  
 }
 
@@ -361,7 +408,7 @@ function registration_errors_validation($reg_errors, $sanitized_user_login, $use
 add_action( 'woocommerce_register_form', 'wc_register_form_password_repeat' );
 function wc_register_form_password_repeat() {
 	?>
-	<p class="form-row form-row-wide">
+	<p class="form-row form-row-wide woocommerce-FormRow">
 		<label for="reg_password2"><?php _e( 'Confirmar contraseña', 'woocommerce' ); ?> <span class="required">*</span></label>
 		<input type="password" class="input-text" name="password2" id="reg_password2" value="<?php if ( ! empty( $_POST['password2'] ) ) echo esc_attr( $_POST['password2'] ); ?>" />
 	</p>

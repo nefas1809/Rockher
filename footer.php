@@ -72,12 +72,14 @@
 
 
 		function resizeFooter(){
+			<? if(! is_product()){ ?>
 			var seccionesAlto = $("#secciones > div").height();
 			var perfilAlto = $("#perfil > div").height();
 			var redesAlto = $("#redes > div").height();
 			var contactoAlto = $("#contacto_rap > div").height();
 			var mayor = Math.max(seccionesAlto, perfilAlto, redesAlto, contactoAlto);
 			$("#secciones > div, #perfil > div, #redes > div, #contacto_rap > div").css("height",mayor);
+			<? } ?>
 		}
 
 		function resetHeight(){
@@ -93,5 +95,44 @@
 	
 	<?php wp_footer(); ?>
 	
+
+	<!-- DEMO OBTENER SCRIPTS PARA VER SI HAY DUPLICADOS POR WORDPRESS DE KK-->
+	<script>
+		var arr = new Array ();
+
+		$(document).ready(function(){
+			var scripts = document.getElementsByTagName("script");
+			for(var i = 0; i<scripts.length; i++){
+				
+				if (scripts[i].src){
+					var scrip = scripts[i].src;
+					console.log(i,scripts[i].src);
+					/*if($.inArray(scrip,arr) > -1){
+						console.log("YA LO CONTIENE: "+scrip);
+						scripts[i].parentNode.removeChild(scripts[i]);
+						leerScripts();
+
+					}else{
+						arr[i] = scrip;
+					}*/
+					
+				}
+			}
+
+			/*console.log("SCRIPTS FINALES: ");
+			leerScripts();*/
+		});
+
+		function leerScripts(){
+			var scripts = document.getElementsByTagName("script");
+			for(var i = 0; i<scripts.length; i++){
+				if (scripts[i].src){
+					console.log(i,scripts[i].src);
+					
+				}
+			}
+		}
+	</script>
+
   </body>
 </html>

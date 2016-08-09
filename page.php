@@ -90,6 +90,10 @@
 			});
 						
 	<?
+		}else if(is_product()){
+	?>	
+		console.log("estas viendo un producto");
+	<?		
 		}
 
 

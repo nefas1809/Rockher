@@ -277,8 +277,8 @@ div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.co
 	width: 100%;
 	display: none;
 	position: absolute;
-	height: 90%;
-	top: 110px;
+	height: 100%;
+	top: 0px;
 	background-color: rgba(227,227,227,.8);
 	z-index: 10;
 }

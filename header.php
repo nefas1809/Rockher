@@ -276,9 +276,11 @@
       } else{
     ?>
         <div class="container" id="principal">
+
     <?    
       }
 
     ?>
+          
     
       

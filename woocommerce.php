@@ -24,7 +24,20 @@ if(!is_product()){
 		<?php woocommerce_content();?>
 		
   		</div>
-  		<div id='opaco'></div>
+  		<div id='opaco'>
+  			<div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+  		</div>
+  		<!--<div class="spinner">
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		  <div></div>
+		</div>-->
 	</div>
 
 
@@ -93,6 +106,7 @@ if(!is_product()){
 <div id="getProducto" style="display:none;">
 	
 </div>
+
 <?
 }else{
 ?>
@@ -185,6 +199,10 @@ if(!is_product()){
 <div id="getProducto" style="display:none;">
 	
 </div>
+
+
+
+
 <?
 }
 ?>
@@ -198,7 +216,10 @@ if(!is_product()){
   </div>
 </div>-->
 
-<script>	
+<script>
+$(document).ready(function(){
+	$("#opaco").hide();
+});	
 <?
 	if(is_product_category()){
 ?>
@@ -231,6 +252,8 @@ if(!is_product()){
 			$.ajax({
 			   url:$link_ir,
 			   type:'GET',
+			   beforeSend: function(){ $("#opaco").show();},
+			   complete: function(){ $("#opaco").hide();},
 			   success: function(data){
 			   		var obtenido = $(data).find("#contenedorProductos").html();
 			   		console.log("/*/*/*/*/*/*/*/*/*/*/*/*/*/*");
@@ -351,6 +374,7 @@ console.log("Antes de agregar el div, esto trae el show details del modal: "+$(d
 					$("#productInfoH2").text($("#myModal").find("h1.product_title").text());
 
 			   }
+
 			});
 			
 			

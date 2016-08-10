@@ -1242,9 +1242,9 @@ div.navbar-header{
 		display: block;
 	}
 	#pedidoFront, #pedidoFull, #pedidoSudadera, #pedidoSpring{
-		width: 50%;
+		width: 25%;
 		float: left;
-		z-index: 100;
+		z-index: -1;
 	}
 
 }

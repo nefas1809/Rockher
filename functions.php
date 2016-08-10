@@ -27,6 +27,7 @@ function wpbootstrap_scripts_with_jquery()
 			wp_register_style("contactoResponsive", get_template_directory_uri() . '/css/contacto.responsive.css' );
 			wp_register_style("usuarioResponsive", get_template_directory_uri() . '/css/usuario_responsive.css' );
 			wp_register_style('prendas', get_template_directory_uri() . '/css/estilos_prendas.css' );
+			wp_register_style('loader', get_template_directory_uri() . '/css/loader.css' );
 			wp_enqueue_style('bootstrap');
 			wp_enqueue_style('bootstrap_resp');
 			wp_enqueue_style('estilos');
@@ -65,7 +66,7 @@ function wpbootstrap_scripts_with_jquery()
 			//wp_dequeue_script("" );*/
 		}
 		if(is_product_category() || is_shop()){
-
+			wp_enqueue_style('loader');
 			/*echo "<script>console.log('ESTO ES DESDE FUNCTIONS Y ESTAMOS EN CATEGORY O SHOP');</script>";
 			wp_enqueue_script( 'wc-add-to-cart', $frontend_script_path . 'add-to-cart' . $suffix . '.js' );
 			wp_enqueue_script('wc-add-to-cart-variation');

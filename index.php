@@ -98,9 +98,9 @@ Este tema ha sido creado basandonos en los ejemplos de Bootstrap para crear una 
       $("#armaPedido2").click(function(){
         if($(window).width() > 1600){
           armaPedidoHorizontal();
-        }else if($(window).width() > 815){
+        }else /*if($(window).width() < 815)*/{
           console.log("click when screen 815 or minus");
-          armaPedidoHorizontal();
+          armePedidoVertical();
         }
         
     });
@@ -187,6 +187,11 @@ function armaPedidoHorizontal(){
           //$("#contenedorDesplegable").addClass("showDesplegable");
           
         }
+}
+
+function armePedidoVertical(){
+  $("#comoComprar, #loNuevo").slideToggle('slow');//addClass("hideD");
+  $("#contenedorDesplegable").slideToggle("slow");
 }
 
 /*function armaPedidoHorizontal(){

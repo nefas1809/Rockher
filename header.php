@@ -128,7 +128,7 @@
           <button type="button" id="botonMenu" class="navbar-toggle collapsed" >
             <i class="fa fa-bars" aria-hidden="true" style="color: #fff;"></i>
           </button>
-          <div>
+          <div id="divLogo">
           <a class="brand" href="<?php bloginfo('url'); ?>"><img id="logo-img" src="<?php bloginfo('template_url'); ?>/img/logoRockher.png" alt=""/></a></div>
           <div class="nav navbar-nav">
             <?

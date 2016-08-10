@@ -187,12 +187,12 @@ ul.nav > li.current_page_item:after{
 #armaPedido, #comoComprar, #loNuevo{
 		width: 33.3%;
 }
-#comoComprar, #loNuevo, #armaPedido, #banner_lookbook{
+/*#comoComprar, #loNuevo, #armaPedido, #banner_lookbook{
 	-webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
     -o-transition: all 1s ease;
     transition: all 1s ease;
-}
+}*/
 #armaPedido > div{
 	-webkit-transition: all 1s ease;
     -moz-transition: all 1s ease;
@@ -1073,6 +1073,19 @@ div.navbar-header{
 		bottom: -100%;
 		width: 100%;
 	}
+	#contenedorDesplegable{
+		display: none;
+		position: static;
+		float: left;
+	}
+	#pedidoDesplegable{
+		display: block;
+	}
+	#pedidoFront, #pedidoFull, #pedidoSudadera, #pedidoSpring{
+		width: 25%;
+		float: left;
+		z-index: 100;
+	}
 
 
 }
@@ -1216,6 +1229,23 @@ div.navbar-header{
 	.separador-horizontal{
 		width: 100% !important;
 	}
+	nav.navbar{
+		position: static !important;
+	}
+
+	#contenedorDesplegable{
+		display: none;
+		position: static;
+		float: left;
+	}
+	#pedidoDesplegable{
+		display: block;
+	}
+	#pedidoFront, #pedidoFull, #pedidoSudadera, #pedidoSpring{
+		width: 50%;
+		float: left;
+		z-index: 100;
+	}
 
 }
 
@@ -1223,9 +1253,21 @@ div.navbar-header{
 
 /*PARA ARMA PEDIDO, CLASES EXTRAS QUE SE PONEN CON EVENTOS*/
 
-.hide{
+.hideD{
+	
+	/*display: none;*/
+	-webkit-animation: hideAnimation linear 1s steps(10) forwards;
+	-o-animation: hideAnimation linear 1s steps(10) forwards;
+	animation: hideAnimation 1s steps(10) forwards;
+	/*height: 0!important;*/
+}
 
-	display: none;
+@keyframes hideAnimation {
+	0%{height: auto;opacity: 1; }
+	100%{height: 0px;opacity: 0; }
+  /*from{opacity:1; height: auto}
+  to{opacity:0; height: 0 !important;}*/
+	
 }
 
 .pedidoRow{
@@ -1243,4 +1285,49 @@ div.navbar-header{
     -moz-transition: all 0.6s ease;
     -o-transition: all 0.6s ease;
     transition: all 0.6s ease;
+}
+
+@media (max-width: 415px),
+(max-device-width: 415px) {
+	#divLogo{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		max-width: 40%;
+	}
+	.brand{
+		padding: 0px;
+	}
+	#logo-img{
+		width: auto;
+		margin:auto;
+	}
+	.nav{
+		width: auto;
+		margin:auto;
+	}
+	.fa{
+		font-size: 1em !important;
+	}
+	nav.navbar{
+		position: static !important;
+	}
+	.menuPr{
+		width: 100% !important;
+	}
+
+	#contenedorDesplegable{
+		display: none;
+		position: static;
+		float: left;
+	}
+	#pedidoDesplegable{
+		display: block;
+	}
+	#pedidoFront, #pedidoFull, #pedidoSudadera, #pedidoSpring{
+		width: 50%;
+		float: left;
+		z-index: 100;
+	}
 }

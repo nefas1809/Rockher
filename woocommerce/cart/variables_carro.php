@@ -1,6 +1,7 @@
 <?
 
 $arreglo = array();
+$arregloProductos = array();
 
 function addArreglo($item){
 	global $arreglo;
@@ -63,6 +64,37 @@ function addBack2Shop(){
 		</script>
 
 	<?
+}
+
+function is_unique($productId){
+	global $arregloProductos;
+	if(count($arregloProductos) > 0){
+		if(!in_array($productId, $arregloProductos)){
+			$arregloProductos[] = $productId;
+			return true;
+		}else{
+			echo "<script>console.log('Ya existe en el arreglo');</script>";
+			return false;
+		}
+	}else{
+		$arregloProductos[] = $productId;
+		return true;
+	}
+		
+	
+
+}
+
+function addToSameRow($productId){
+?>
+	<script>
+		var elem = "#"+$productId;
+		$(elem)
+		
+	</script>
+
+
+<?
 }
 
 

@@ -24,20 +24,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 wc_print_notices();
 require_once 'variables_carro.php';
-do_action( 'woocommerce_before_cart' ); ?>
+do_action( 'woocommerce_before_cart' ); 
+$color = "";
+$talla = "";
+?>
 
 <form action="<?php echo esc_url( wc_get_cart_url() ); ?>" method="post">
 
 <?php do_action( 'woocommerce_before_cart_table' ); ?>
 
-<table class="shop_table shop_table_responsive cart" cellspacing="0">
+<table class="shop_table shop_table_responsive cart" cellspacing="0" id="tablaProd">
 	<thead>
 		<tr>
 			
 			<th class="product-thumbnail">&nbsp;</th>
 			<th class="product-name"><?php _e( 'Estilo de prenda', 'woocommerce' ); ?></th>
-			<th class="product-price"><?php _e( 'Precio unitario', 'woocommerce' ); ?></th>
 			<th class="product-quantity"><?php _e( 'Quantity', 'woocommerce' ); ?></th>
+			<th class="product-price"><?php _e( 'Precio unitario', 'woocommerce' ); ?></th>	
 			<th class="product-subtotal"><?php _e( 'Total', 'woocommerce' ); ?></th>
 			<th class="product-remove">&nbsp;</th>
 		</tr>
@@ -46,7 +49,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 		<?php do_action( 'woocommerce_before_cart_contents' ); ?>
 
 		<?php
-
+		global $color;
 		foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
 			
 			$_product   = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
@@ -54,13 +57,29 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 			if ( $_product && $_product->exists() && $cart_item['quantity'] > 0 && apply_filters( 'woocommerce_cart_item_visible', true, $cart_item, $cart_item_key ) ) {
 				$product_permalink = apply_filters( 'woocommerce_cart_item_permalink', $_product->is_visible() ? $_product->get_permalink( $cart_item ) : '', $cart_item, $cart_item_key );
-				
-
-				if(is_unique($product_id)){
+			?>
+				<div id="temporalIDS" style="display:none;">
+					<?
+					if ( ! $product_permalink ) {
+						echo apply_filters( 'woocommerce_cart_item_name', $_product->get_title(), $cart_item, $cart_item_key ) . '&nbsp;';
+					} else {
+						echo apply_filters( 'woocommerce_cart_item_name', sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $_product->get_title() ), $cart_item, $cart_item_key );
+					}
+					echo WC()->cart->get_item_data( $cart_item );	
+					
+					//echo "<script>console.log('EL: '+'$product_id.$color');</script>";
+					?>
+				</div>
+				<script>$("#temporalIDS").remove();</script>
+			<?	
+				global $color;
+				$nuevoID = $product_id . $color;
+				//echo "<script>console.log('NUEVO ID DE PRENDA: '+'$nuevoID');</script>";
+				if(if_exists($nuevoID)){
 				?>
-					<tr id="<?=$product_id ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?>">
+					<tr id="<?=$product_id ?><?=$color ?>" class="<?php echo esc_attr( apply_filters( 'woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key ) ); ?> <?=$product_id ?>">
 
-						<div>
+						
 
 						<td class="product-thumbnail">
 							<?php
@@ -84,23 +103,23 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 								// Meta data
 								echo WC()->cart->get_item_data( $cart_item );
-
+								//global $color;
+								//echo "<script>console.log('Elemento key: '+'$color');</script>";			
 								// Backorder notification
 								if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
 									echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';
 								}
 							?>
-						</td>
-
-						<td class="product-price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
-							<?php
-								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
-							?>
+							<script>
+								/*var nuevoId = '<?=$product_id ?>'+'<?=$color ?>';
+								$("#<?=$product_id ?>").attr("id",nuevoId); */
+							</script>
 						</td>
 
 						<td class="product-quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
 							<?
-								createTalla();
+							global $talla;
+								createTalla($talla);
 							?>
 							<?php
 								if ( $_product->is_sold_individually() ) {
@@ -119,6 +138,12 @@ do_action( 'woocommerce_before_cart' ); ?>
 
 						</td>
 
+						<td class="product-price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
+							<?php
+								echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+							?>
+						</td>
+
 						<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
 							<?php
 								echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
@@ -135,13 +160,68 @@ do_action( 'woocommerce_before_cart' ); ?>
 								), $cart_item_key );
 							?>
 						</td>
-						</div>
 					</tr>
 				<?
 				}else{
-					addToSameRow($product_id);
+					//addToSameRow($product_id);
+				?>
+					
+								<tr class="replica cart_item <?=$nuevoID?>">
+								<td></td>
+								<td></td>
+									<td class="product-quantity" data-title="<?php _e( 'Quantity', 'woocommerce' ); ?>">
+									<?
+										global $talla;
+								createTalla($talla);
+									?>
+									<?php
+										if ( $_product->is_sold_individually() ) {
+											$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
+										} else {
+											$product_quantity = woocommerce_quantity_input( array(
+												'input_name'  => "cart[{$cart_item_key}][qty]",
+												'input_value' => $cart_item['quantity'],
+												'max_value'   => $_product->backorders_allowed() ? '' : $_product->get_stock_quantity(),
+												'min_value'   => '0'
+											), $_product, false );
+										}
+
+										echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item );
+									?>
+
+									</td>
+
+									<td class="product-price" data-title="<?php _e( 'Price', 'woocommerce' ); ?>">
+										<?php
+											echo apply_filters( 'woocommerce_cart_item_price', WC()->cart->get_product_price( $_product ), $cart_item, $cart_item_key );
+										?>
+									</td>
+
+									<td class="product-subtotal" data-title="<?php _e( 'Total', 'woocommerce' ); ?>">
+										<?php
+											echo apply_filters( 'woocommerce_cart_item_subtotal', WC()->cart->get_product_subtotal( $_product, $cart_item['quantity'] ), $cart_item, $cart_item_key );
+										?>
+									</td>
+									<td class="product-remove">
+										<?php
+											echo apply_filters( 'woocommerce_cart_item_remove_link', sprintf(
+												'<a href="%s" class="remove" title="%s" data-product_id="%s" data-product_sku="%s"><i id="i-cerrarDetalles" class="fa fa-times close" aria-hidden="true" style="font-size: 32px;"></i></a>',
+												esc_url( WC()->cart->get_remove_url( $cart_item_key ) ),
+												__( 'Remove this item', 'woocommerce' ),
+												esc_attr( $product_id ),
+												esc_attr( $_product->get_sku() )
+											), $cart_item_key );
+										?>
+									</td>
+								</tr>
+								<script>
+									$(".<?=$nuevoID?>").detach().insertAfter($("#<?=$nuevoID?>"));
+								</script>
+					
+				<?	
 
 				}
+				showArrayIDS();
 				
 				?>
 				
@@ -163,7 +243,7 @@ do_action( 'woocommerce_before_cart' ); ?>
 					</div>
 				<?php } ?>-->
 
-				<input type="submit" class="button" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
+				<input id="updateCarrito" type="submit" class="button btn_update" name="update_cart" value="<?php esc_attr_e( 'Update Cart', 'woocommerce' ); ?>" />
 
 				<?php do_action( 'woocommerce_cart_actions' ); ?>
 
@@ -184,6 +264,16 @@ do_action( 'woocommerce_before_cart' ); ?>
 	<?php do_action( 'woocommerce_cart_collaterals' ); ?>
 
 </div>
+
+<script>
+	/*$("#updateCarrito").click(function(){
+		console.log("update");
+		$(".replica").hide();
+
+	});*/
+</script>
+
+
 
 <?php do_action( 'woocommerce_after_cart' ); 
 	  addBack2Shop();

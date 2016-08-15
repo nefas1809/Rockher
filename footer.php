@@ -106,7 +106,7 @@
 				
 				if (scripts[i].src){
 					var scrip = scripts[i].src;
-					console.log(i,scripts[i].src);
+					//console.log(i,scripts[i].src);
 					/*if($.inArray(scrip,arr) > -1){
 						console.log("YA LO CONTIENE: "+scrip);
 						scripts[i].parentNode.removeChild(scripts[i]);

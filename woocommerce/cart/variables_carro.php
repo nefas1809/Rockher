@@ -24,23 +24,24 @@ function showArreglo(){
 		# code...
 		?>
 		<script>
-			console.log("mostrando: "+"<?=$key ?>");
+			//console.log("mostrando: "+"<?=$key ?>");
 		</script>
 		<?
 	}
 }
 
-function createTalla(){
-	global $arreglo;
+function createTalla($talla){
+	/*global $arreglo;
 	foreach ($arreglo as $key) {
-		# code...
+		# code...*/
+		$tallaC = $talla;
 		?>
 
-		<div class='circle circle-talla' style='float: left;';'><span style='text-align: center;'><?=$key ?></span></div>
+		<div class='circle circle-talla' style='float: left;';'><span style='text-align: center;'><?=$tallaC ?></span></div>
 		<?
-	}
+	/*}
 	unset($GLOBALS['arreglo']);
-	//$arreglo = array();
+	//$arreglo = array();*/
 	
 
 }
@@ -66,14 +67,18 @@ function addBack2Shop(){
 	<?
 }
 
-function is_unique($productId){
+function addNewId($newId){
+
+}
+
+function if_exists($productId){
 	global $arregloProductos;
 	if(count($arregloProductos) > 0){
 		if(!in_array($productId, $arregloProductos)){
 			$arregloProductos[] = $productId;
 			return true;
 		}else{
-			echo "<script>console.log('Ya existe en el arreglo');</script>";
+			//echo "<script>console.log('Ya existe en el arreglo');</script>";
 			return false;
 		}
 	}else{
@@ -83,6 +88,13 @@ function is_unique($productId){
 		
 	
 
+}
+
+function showArrayIDS(){
+	global $arregloProductos;
+	foreach ($arregloProductos as $key) {
+		//echo "<script>console.log('SHOWARRAYIDS: '+'$key')</script>";
+	}
 }
 
 function addToSameRow($productId){

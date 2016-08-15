@@ -19,22 +19,45 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 require_once 'variables_carro.php';
+global $color;
 ?>
 <dl class="variation">
 	<?php foreach ( $item_data as $data ) : ?>
 		<!--<script>
 			console.log("hola desde cart: "+'<? echo wp_kses_post( $data['key'] ); ?>');
 		</script>-->
-		<? if(strpos(wp_kses_post( $data['key'] ),'Tallas') === false){ ?>
-				<dt class="variation-<?php echo sanitize_html_class( $data['key'] ); ?>"><?php echo wp_kses_post( $data['key'] ); ?>:</dt>
-				<dd class="variation-<?php echo sanitize_html_class( $data['key'] ); ?>"><?php echo wp_kses_post( wpautop( $data['display'] ) ); ?></dd>
+		<? if(strpos(wp_kses_post( $data['key'] ),'Tallas') === false){ 
+				ob_start();
+				echo wp_kses_post($data['key']);
+				$stringD = ob_get_contents();
+				ob_end_clean();
+				
+				if($stringD == "Colores"){
+					echo "<script>console.log('Elemento key: '+'$stringD');</script>";
+					ob_start();
+					echo wp_kses_post($data['display']);
+					$color = ob_get_contents();
+					ob_end_clean();
+					echo "<script>console.log('Color del elemento: '+'$color');</script>";
+
+				}
+		?>
+			<!--añadido para ver color-->
+			<dt class="variation-<?php echo sanitize_html_class( $data['key'] ); ?>"><?php echo wp_kses_post( $data['key'] ); ?>:</dt>
+			<dd class="variation-<?php echo sanitize_html_class( $data['key'] ); ?>"><?php echo wp_kses_post( wpautop( $data['display'] ) ); ?></dd>
+				
 		<? }else{
 			//global $arrayTallas;
 				ob_start();
 				echo wp_kses_post($data['display']);
 				$stringD = ob_get_contents();
 				ob_end_clean();
-				addArreglo($stringD);
+				global $talla;
+				$talla = $stringD;
+
+				
+				//createTalla($stringD);
+				//addArreglo($stringD);
 			}
 		?>
 		

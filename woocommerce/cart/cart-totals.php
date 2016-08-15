@@ -88,9 +88,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<?php do_action( 'woocommerce_cart_totals_before_order_total' ); ?>
 
-		<tr class="order-total">
+		<tr class="order-total" id="tootales">
 			<th><?php _e( 'Total', 'woocommerce' ); ?></th>
-			<td data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
+			<td id="precioTotal" data-title="<?php esc_attr_e( 'Total', 'woocommerce' ); ?>"><?php wc_cart_totals_order_total_html(); ?></td>
 		</tr>
 
 		<?php do_action( 'woocommerce_cart_totals_after_order_total' ); ?>
@@ -102,5 +102,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	</div>
 
 	<?php do_action( 'woocommerce_after_cart_totals' ); ?>
+
+	<script>
+$("#precioTotal > strong > span").change(function(){
+	console.log("precio cambio");
+});
+</script>
 
 </div>

@@ -23,9 +23,42 @@
 		if(is_cart()){
 	?>
 			console.log("ES CARRO");
+			var subtotal = $("tr.cart-subtotal > td > span").text();
+			var elId = "";
 			$("img").removeAttr("width");
 			$("img").removeAttr("height");
 			$("img.attachment-shop_thumbnail").addClass("imagenCarrito");
+
+			$('#page > .row > .woocommerce').bind('DOMNodeInserted DOMNodeRemoved', function(event) {
+				if($("tr.cart-subtotal > td > span").text() != subtotal){
+					subtotal = $("tr.cart-subtotal > td > span").text();
+					$("#tablaProd > tbody > tr").each(function(){
+						if(this.id != ""){
+							elId = this.id;
+							console.log("ID DE LA PLAYERA: "+elId);
+							$("."+elId).each(function(index){
+								if(index === 0){
+									$(this).detach().insertAfter("#"+elId);	
+								}else{
+									$(this).detach().insertAfter($("."+elId).eq(index-1));	
+									//$(this).detach().insertAfter("."+elId+":last");	
+								}
+								
+							});
+							
+						}
+					});
+					//alert("EL PRECIO HA CAMBIADO");
+				}
+				/*if($(".woocommerce-message").is(":visible")){
+					alert("HOLA2");
+					return false;
+				}*/
+
+				
+			});
+			
+
 				
 	<?
 		}else if(is_checkOut()){

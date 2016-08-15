@@ -11,6 +11,10 @@ table.shop_table{
 	background-color: transparent !important;
 }
 
+.replica > td{
+	border: none !important;
+}
+
 th{
 	text-transform: uppercase;
 	font-family: "Abreu", Fallback, sans-serif;

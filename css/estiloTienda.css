@@ -163,6 +163,7 @@ div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.co
 #myModal{
 	text-transform: uppercase;
 	padding: 0px !important;
+	
 }
 #productInfoH2{
 	text-align: right;
@@ -386,3 +387,9 @@ div.modal-dialog{
 	max-width: 159px;
 	max-height: 206px;
 }*/
+.inputTalla{
+	width: 100%;
+}
+#tallas > div{
+	
+}

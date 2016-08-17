@@ -104,7 +104,7 @@ $talla = "";
 								// Meta data
 								echo WC()->cart->get_item_data( $cart_item );
 								//global $color;
-								//echo "<script>console.log('Elemento key: '+'$color');</script>";			
+											
 								// Backorder notification
 								if ( $_product->backorders_require_notification() && $_product->is_on_backorder( $cart_item['quantity'] ) ) {
 									echo '<p class="backorder_notification">' . esc_html__( 'Available on backorder', 'woocommerce' ) . '</p>';

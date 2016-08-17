@@ -35,7 +35,7 @@
 					$("#tablaProd > tbody > tr").each(function(){
 						if(this.id != ""){
 							elId = this.id;
-							console.log("ID DE LA PLAYERA: "+elId);
+							//console.log("ID DE LA PLAYERA: "+elId);
 							$("."+elId).each(function(index){
 								if(index === 0){
 									$(this).detach().insertAfter("#"+elId);	
@@ -49,6 +49,18 @@
 						}
 					});
 					//alert("EL PRECIO HA CAMBIADO");
+					var count = $(".wc-proceed-to-checkout").children().length;
+					console.log("HIJOS DE SU PINSHI: "+count);
+					if( count === 1){
+
+						<? $shop_page_url = get_permalink( woocommerce_get_page_id( 'shop' ) );
+						?>
+
+
+				var elem = "<a class='button alt wc-backward continuarComprando' href='<?=$shop_page_url?>'>Continuar comprando</a>";
+				$("div.wc-proceed-to-checkout").prepend(elem);
+
+					}
 				}
 				/*if($(".woocommerce-message").is(":visible")){
 					alert("HOLA2");
@@ -58,9 +70,12 @@
 				
 			});
 			
+			
+			
 
 				
 	<?
+
 		}else if(is_checkOut()){
 	?>
 			console.log("ES check");

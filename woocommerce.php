@@ -1,6 +1,7 @@
 
 <?php get_header(); 
 if(!is_product()){
+
 ?>
 
 
@@ -217,13 +218,14 @@ if(!is_product()){
 </div>-->
 
 <script>
+
 $(document).ready(function(){
 	$("#opaco").hide();
 });	
 <?
 	if(is_product_category()){
 ?>
-
+		var scriptMayorista = false;
 		var divModal = $("#myModal");
 		//console.log("MODAL: "+divModal.html());
 		$("div.loopDeContentProduct").click(function(e){
@@ -247,135 +249,152 @@ $(document).ready(function(){
 			// $(this).parent().css("zIndex", "15");
 			$link_ir = $(this).children(":first-child").attr("href");
 			$direccion = "<? bloginfo('template_directory_uri');?>";
-			console.log($direccion);
-			console.log($link_ir);
-			$.ajax({
-			   url:$link_ir,
-			   type:'GET',
-			   beforeSend: function(){ $("#opaco").show();},
-			   complete: function(){ $("#opaco").hide();},
-			   success: function(data){
-			   		var obtenido = $(data).find("#contenedorProductos").html();
-			   		console.log("/*/*/*/*/*/*/*/*/*/*/*/*/*/*");
-			   		console.log(obtenido);
-			       $('#showDetails').find($('#productInfoImg')).html(data);
-			       	//html($(data).find("#contenedorProductos").html()));
-			      //$('#showDetails').html(myhtml);
-			       $("#showDetails").find(('#productInfoImg')).find("head").remove();
-			       $('#showDetails').find("#contenedorMenu").remove();
-			       $('#showDetails').find("nav").remove();
-			       $('#showDetails').find("footer").remove();
-			       $('#showDetails').find("#contenedorMenu").remove();
-			       $('#showDetails').find("div.related").remove();
-			       $('#showDetails').find("#tab-additional_information").remove();
-			       $('#showDetails').find("li.additional_information_tab").remove();
-			       $('#showDetails').find("#commentform").remove();
-			       $('#showDetails').find("div.woocommerce-tabs").remove();
-			       $('#showDetails').find("div.product_meta").remove();
-			       $('#showDetails').find("table.variations").hide();
-			       $('#showDetails').find("h1.product_title").hide();
-			       $('#showDetails').find("form.variations_form").hide();
-			       $('#showDetails').find("div.summary").hide();
-			       var titulo = $("#showDetails").find("h1.product_title").text();
-			       //var cantidad = $("#showDetails").find("div.quantity > input").appendTo("div#cantidad");
-			       //var addCart = $("form.variations_form").detach();
-			       //console.log("ADDCART: "+addCart);
-			       //$("#agregar > a").replaceWith(addCart);
-			      // $("div#cantidad").append(cantidad);
+			//console.log($direccion);
+			//console.log($link_ir);
+
+				$.ajax({
+				   url:$link_ir,
+				   type:'GET',
+				   beforeSend: function(){ $("#opaco").show();},
+				   complete: function(){ $("#opaco").hide();},
+				   success: function(data){
+				   		var obtenido = $(data).find("#contenedorProductos").html();
+				   		console.log("/*/*/*/*/*/*/*/*/*/*/*/*/*/*");
+				   		//console.log(obtenido);
+				       $('#showDetails').find($('#productInfoImg')).html(data);
+				       	//html($(data).find("#contenedorProductos").html()));
+				      //$('#showDetails').html(myhtml);
+				       $("#showDetails").find(('#productInfoImg')).find("head").remove();
+				       $('#showDetails').find("#contenedorMenu").remove();
+				       $('#showDetails').find("nav").remove();
+				       $('#showDetails').find("footer").remove();
+				       $('#showDetails').find("#contenedorMenu").remove();
+				       $('#showDetails').find("div.related").remove();
+				       $('#showDetails').find("#tab-additional_information").remove();
+				       $('#showDetails').find("li.additional_information_tab").remove();
+				       $('#showDetails').find("#commentform").remove();
+				       $('#showDetails').find("div.woocommerce-tabs").remove();
+				       $('#showDetails').find("div.product_meta").remove();
+				       $('#showDetails').find("table.variations").hide();
+				       $('#showDetails').find("h1.product_title").hide();
+				       $('#showDetails').find("form.variations_form").hide();
+				       $('#showDetails').find("div.summary").hide();
+				       var titulo = $("#showDetails").find("h1.product_title").text();
+				       //var cantidad = $("#showDetails").find("div.quantity > input").appendTo("div#cantidad");
+				       //var addCart = $("form.variations_form").detach();
+				       //console.log("ADDCART: "+addCart);
+				       //$("#agregar > a").replaceWith(addCart);
+				      // $("div#cantidad").append(cantidad);
 
 
 
 
 
 
-			       /*$(divModal).find($('#productInfoImg').html($(data)));
+				       /*$(divModal).find($('#productInfoImg').html($(data)));
 
-			      //$(divModal).find("#showDetails").html(myhtml);
-			       $(divModal).find("#showDetails").find(('#productInfoImg')).find("head").remove();
-			       $(divModal).find("#showDetails").find("#myModal").remove();
-			       $(divModal).find("#showDetails").find("#contenedorMenu").remove();
-			       $(divModal).find("#showDetails").find("nav").remove();
-			       $(divModal).find("#showDetails").find("footer").remove();
-			       $(divModal).find("#showDetails").find("#contenedorMenu").remove();
-			       $(divModal).find("#showDetails").find("div.related").remove();
-			       $(divModal).find("#showDetails").find("#tab-additional_information").remove();
-			       $(divModal).find("#showDetails").find("li.additional_information_tab").remove();
-			       $(divModal).find("#showDetails").find("#commentform").remove();
-			       $(divModal).find("#showDetails").find("div.woocommerce-tabs").remove();
-			       $(divModal).find("#showDetails").find("div.product_meta").remove();
-			       $(divModal).find("#showDetails").find("table.variations").hide();
-			       $(divModal).find("#showDetails").find("h1.product_title").hide();
-			       $(divModal).find("#showDetails").find("form.variations_form").hide();
-			       $(divModal).find("#showDetails").find("div.summary").hide();
-			       var titulo = $(divModal).find("#showDetails").find("h1.product_title").text();
-			       //var cantidad = $(divModal).find("#showDetails").find("div.quantity > input").appendTo("div#cantidad");
-			       //var addCart = $("form.variations_form").detach();
-			       //console.log("ADDCART: "+addCart);
-			       //$("#agregar > a").replaceWith(addCart);
-			      // $("div#cantidad").append(cantidad);
-			       var nuevoContenido = $(divModal).find($('#showDetails')).html();
-			       //console.log("NUEVO CONTENIDO: "+nuevoContenido);
-			       //$(divModal).find($('#showDetails')).find($("#productInfoImg")).empty();*/
-
-
-
-
-			       
-
-			       $.getScript('<? bloginfo('template_directory')?>/js/mostrarColores.js');
-
-			       $('#myModal').modal("show");
+				      //$(divModal).find("#showDetails").html(myhtml);
+				       $(divModal).find("#showDetails").find(('#productInfoImg')).find("head").remove();
+				       $(divModal).find("#showDetails").find("#myModal").remove();
+				       $(divModal).find("#showDetails").find("#contenedorMenu").remove();
+				       $(divModal).find("#showDetails").find("nav").remove();
+				       $(divModal).find("#showDetails").find("footer").remove();
+				       $(divModal).find("#showDetails").find("#contenedorMenu").remove();
+				       $(divModal).find("#showDetails").find("div.related").remove();
+				       $(divModal).find("#showDetails").find("#tab-additional_information").remove();
+				       $(divModal).find("#showDetails").find("li.additional_information_tab").remove();
+				       $(divModal).find("#showDetails").find("#commentform").remove();
+				       $(divModal).find("#showDetails").find("div.woocommerce-tabs").remove();
+				       $(divModal).find("#showDetails").find("div.product_meta").remove();
+				       $(divModal).find("#showDetails").find("table.variations").hide();
+				       $(divModal).find("#showDetails").find("h1.product_title").hide();
+				       $(divModal).find("#showDetails").find("form.variations_form").hide();
+				       $(divModal).find("#showDetails").find("div.summary").hide();
+				       var titulo = $(divModal).find("#showDetails").find("h1.product_title").text();
+				       //var cantidad = $(divModal).find("#showDetails").find("div.quantity > input").appendTo("div#cantidad");
+				       //var addCart = $("form.variations_form").detach();
+				       //console.log("ADDCART: "+addCart);
+				       //$("#agregar > a").replaceWith(addCart);
+				      // $("div#cantidad").append(cantidad);
+				       var nuevoContenido = $(divModal).find($('#showDetails')).html();
+				       //console.log("NUEVO CONTENIDO: "+nuevoContenido);
+				       //$(divModal).find($('#showDetails')).find($("#productInfoImg")).empty();*/
 
 
 
-			        var divID = $(this).parent();
-					console.log("divID: "+divID);
-					/*$(divID).addClass("col-md-12").html("soy del div presionado");*/
 
-					var anchoDiv = $(this).parent().width();
-					console.log("ancho del div: "+anchoDiv);
-					var index = $('#divPopUp div.product').index(divID);
-					console.log("hijos: "+$("#divPopUp").children().length);
+				       
+				       <?
+						if(!current_user_can("mayoristas" )){
+						?>
+				       		$.getScript('<? bloginfo('template_directory')?>/js/mostrarColores.js');
+				       	<?
+				       	}else{
+				       	?>
+				       		if(scriptMayorista == false){
+				       			scriptMayorista = true;
+				       			$.getScript('<? bloginfo('template_directory')?>/js/tallas_mayoristas.js');
+				       		}
+				       		
 
-					/*$("#divPopUp > div.product").each(function(index){
-						console.log("Linea "+(index+1));
-						if(((index+1)%4) === 0 ){
-							console.log("una linea de 4");
-							var nuevoIndex = "index"+(index+1);
-							var nuevoDiv = "<div id='"+nuevoIndex+"' class='col-md-12 div-detalle'>Holi</div>";
-							if($("#divPopUp").find('#'+nuevoIndex).length <= 0){
-								//$(nuevoDiv).hide().insertAfter($("#divPopUp").children(":nth-child("+(index+1)+")")).html($("#showDetails").html()).slideToggle('slow');
+				       	<?	
+				       	}
+				       	?>
 
-
-console.log("Antes de agregar el div, esto trae el show details del modal: "+$(divModal).find("#showDetails").html());
-
-								$(nuevoDiv).hide().insertAfter($("#divPopUp").children(":nth-child("+(index+1)+")")).html(nuevoContenido).slideToggle('slow');
+				       $('#myModal').css("display","flex").modal("show");
 
 
-							}else{
-								$('#'+nuevoIndex).html($("#showDetails").html()).slideToggle('slow').slideToggle('slow');
+
+				        var divID = $(this).parent();
+						//console.log("divID: "+divID);
+						/*$(divID).addClass("col-md-12").html("soy del div presionado");*/
+
+						var anchoDiv = $(this).parent().width();
+						//console.log("ancho del div: "+anchoDiv);
+						var index = $('#divPopUp div.product').index(divID);
+						//console.log("hijos: "+$("#divPopUp").children().length);
+
+						/*$("#divPopUp > div.product").each(function(index){
+							console.log("Linea "+(index+1));
+							if(((index+1)%4) === 0 ){
+								console.log("una linea de 4");
+								var nuevoIndex = "index"+(index+1);
+								var nuevoDiv = "<div id='"+nuevoIndex+"' class='col-md-12 div-detalle'>Holi</div>";
+								if($("#divPopUp").find('#'+nuevoIndex).length <= 0){
+									//$(nuevoDiv).hide().insertAfter($("#divPopUp").children(":nth-child("+(index+1)+")")).html($("#showDetails").html()).slideToggle('slow');
+
+
+	//console.log("Antes de agregar el div, esto trae el show details del modal: "+$(divModal).find("#showDetails").html());
+
+									$(nuevoDiv).hide().insertAfter($("#divPopUp").children(":nth-child("+(index+1)+")")).html(nuevoContenido).slideToggle('slow');
+
+
+								}else{
+									$('#'+nuevoIndex).html($("#showDetails").html()).slideToggle('slow').slideToggle('slow');
+								}
+								
+							}else if($("#divPopUp").children().length < 4){
+								console.log("no tieen muchos hijos, menos de 4");
+								var nuevoDiv2 = "<div id='detalle' class='col-md-12 div-detalle'>Holi</div>";
+								if($("#divPopUp").find('#detalle').length <= 0){
+									console.log('aun no tiene el div nuevo' );
+									$(nuevoDiv2).hide().insertAfter($('#divPopUp > div.product:last-child')).html($('#showDetails').html()).slideToggle('slow');
+
+								}else{
+									console.log('ya tiene el div nuevo' );
+									$('#detalle').html($('#showDetails').html()).slideToggle('slow').slideToggle('slow');
+								}
+								
+								
 							}
-							
-						}else if($("#divPopUp").children().length < 4){
-							console.log("no tieen muchos hijos, menos de 4");
-							var nuevoDiv2 = "<div id='detalle' class='col-md-12 div-detalle'>Holi</div>";
-							if($("#divPopUp").find('#detalle').length <= 0){
-								console.log('aun no tiene el div nuevo' );
-								$(nuevoDiv2).hide().insertAfter($('#divPopUp > div.product:last-child')).html($('#showDetails').html()).slideToggle('slow');
+						});*/
+						$("#productInfoH2").text($("#myModal").find("h1.product_title").text());
 
-							}else{
-								console.log('ya tiene el div nuevo' );
-								$('#detalle').html($('#showDetails').html()).slideToggle('slow').slideToggle('slow');
-							}
-							
-							
-						}
-					});*/
-					$("#productInfoH2").text($("#myModal").find("h1.product_title").text());
+				   }
 
-			   }
-
-			});
+				});
+			
+			
 			
 			
 			
@@ -465,13 +484,13 @@ $('#myModal').on('hidden.bs.modal', function () {
 		});
 
 
-		$("#agregar > a").click(function(e){
+		/*$("#agregar > a").click(function(e){
 			console.log("Presiono el de añadir al carro");
 			e.preventDefault();
 			$("#myModal").find("button.single_add_to_cart_button").click();
 			console.log("se encontro el boton");
 			
-		});
+		});*/
 <?
 	}else if(is_product()){
 	?>	

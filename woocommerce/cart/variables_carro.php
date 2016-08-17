@@ -58,8 +58,6 @@ function addBack2Shop(){
 	?>
 
 		<script>
-		var ruta = "";
-		console.log(""+ruta);
 		var elem = "<a class='button alt wc-backward continuarComprando' href='<?=$shop_page_url?>'>Continuar comprando</a>";
 		$("div.wc-proceed-to-checkout").prepend(elem);
 		</script>

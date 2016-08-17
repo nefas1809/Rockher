@@ -2,10 +2,11 @@
 clearModal();
 var arrayTallas = ["Tallas_ninas", "Tallas_damas", "Tallas_bebe","Tallas_extras", "Tallas_ninas_y_extras", "Tallas_damas_y_extras"];
 var tipoTalla;
+$("#myModal").find($("#productInfoCantidad")).css("display","none");
 $('table.variations > tbody > tr').each(function(){
 	var label = $(this).children(':first-child').find('label').text();
 	
-	//console.log("label: "+label);
+	console.log("label: "+label);
 	if(label === 'Colores'){
 
 		$(this).children(':nth-child(2)').find('select > option').each(function(index){
@@ -21,18 +22,19 @@ $('table.variations > tbody > tr').each(function(){
 				
 			}
 		});
-		//console.log("Es color");
+		console.log("Es color");
 	}else if( $.inArray(label,arrayTallas) >= 0)/*label === 'Tallas_bebes' || label === 'Tallas_ninas' || label === 'Tallas_damas' || label === 'Tallas_extras')*/{
 		tipoTalla = label.toLowerCase();
-		//console.log("Es talla: "+label+" y tipoTalla: "+tipoTalla);
+		console.log("Es talla: "+label+" y tipoTalla: "+tipoTalla);
 		$(this).children(':nth-child(2)').find('select > option').each(function(index2){
 			if(index2 != 0){
 				var color = $(this).text();
 				var valor = $(this).val();
 
-				//console.log('Talla: '+label+' , '+color+" index: "+index2+" value: "+valor);
-				if($('div#tallas').find('#'+color).length <= 0){
-					$('div#tallas').append("<div class='circle circle-talla' style='background-color: "+color+"';' id='"+valor+"'><span class='center-text'>"+color+"</span></div>");
+				console.log('Talla: '+label+' , '+color+" index: "+index2+" value: "+valor);
+				var divTallas = $("#myModal").find($('div#tallas'));
+				if($(divTallas).find('#'+color).length <= 0){
+					$(divTallas).append("<div><div class='circle circle-talla' style='background-color: "+color+"';' id='"+valor+"'><span class='center-text'>"+color+"</span></div><input type='number' step='1' min='0' value='0' class='input-text qty text inputTalla'></div>");
 				}
 				
 				
@@ -119,7 +121,7 @@ function setPrecio(){
 	}
 }
 
-$("div.circle-talla").click(function(){
+/*$("div.circle-talla").click(function(){
 	$("div.circle-talla").css({"background-color":"#fff", "color":"#cccccc"});
 	$("div.circle-talla > span").css("color","#cccccc");
 	$(this).css({"background-color":"#cccccc", "color":"#fff"});
@@ -134,7 +136,7 @@ $("div.circle-talla").click(function(){
 	console.log();
 
 	
-});
+});*/
 
 $("div.img-estilo").click(function(){
 	$("div.img-estilo").css("opacity",".5");
@@ -152,18 +154,46 @@ $("div.img-estilo").click(function(){
 	$("#precio h4").text($("#productInfoImg").find("div.summary .woocommerce-variation-price").text()+" MXN");*/
 });
 
-$("#agregar > a").click(function(e){
-			console.log("Presiono el de añadir al carro");
-			e.preventDefault();
-			$("#myModal").find("button.single_add_to_cart_button").click();
-			console.log("se encontro el boton");
-			
-		});
 
 function clearModal(){
 	$('div#colores').empty();
 	$('div#tallas').empty();
 
+}
+
+$("#agregar > a").click(function(e){
+	console.log("Presiono el de añadir al carro mayorista");
+	e.preventDefault();
+	addToCart();
+	//$("#myModal").find("button.single_add_to_cart_button").click();
+
+	
+});
+
+function addToCart(){
+	var espera = 1000;
+	$("#myModal").find($(".inputTalla")).each(function(index){
+		var elemento = $(this);
+		var valor = $(this).val();
+		
+		setTimeout(function(){
+              
+		console.log("valor del input "+index+": "+valor);
+		if(valor > 0){
+			var id = $(elemento).parent().children(':first-child').attr("id");
+			console.log("El id del elemento a agregar: "+id);
+			$("#pa_"+tipoTalla).val(id).attr("selected","selected").change();
+			$("#myModal").find("div.quantity > input").val(valor).change();
+			$("#myModal").find("button.single_add_to_cart_button").click();
+			
+			
+		}
+    	},espera);
+    	espera += 1000;
+		
+	});
+	
+	
 }
 
 /*function crearCirculoTalla($talla, $contenedor){

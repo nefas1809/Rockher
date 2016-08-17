@@ -50,7 +50,8 @@
           $(this).children(":first-child").addClass("dudas");
         }else if($(this).children(":first-child").text() === "Mi cuenta"){
           $(this).children(":first-child").addClass("perfil").text('').append("<i class='fa fa-user' aria-hidden='true'></i>");
-          <? if(is_user_logged_in()){ 
+          <? if(is_user_logged_in()){
+                require_once 'mayoristas.php'; 
           ?>
                 <?
                   global $current_user;

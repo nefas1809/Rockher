@@ -33,12 +33,12 @@ global $color;
 				ob_end_clean();
 				
 				if($stringD == "Colores"){
-					echo "<script>console.log('Elemento key: '+'$stringD');</script>";
+					//echo "<script>console.log('Elemento key: '+'$stringD');</script>";
 					ob_start();
 					echo wp_kses_post($data['display']);
 					$color = ob_get_contents();
 					ob_end_clean();
-					echo "<script>console.log('Color del elemento: '+'$color');</script>";
+					//echo "<script>console.log('Color del elemento: '+'$color');</script>";
 
 				}
 		?>

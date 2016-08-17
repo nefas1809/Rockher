@@ -451,6 +451,10 @@ function wpb_woo_endpoint_title( $title, $id ) {
 add_filter( 'the_title', 'wpb_woo_endpoint_title', 10, 2 );
 
 
+/*
+PARA CALAR LO NUEVO DE ADD-TO-CART CON AJAX, SABE QUE ES
+*/
+
 
 
 

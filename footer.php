@@ -53,10 +53,12 @@
 			</div>
 		</footer>
 		<script>
+		<? if(! is_product()){ ?>
 			var seccionesAltoOrig = $("#secciones > div").height();
 			var perfilAltoOrig = $("#perfil > div").height();
 			var redesAltoOrig = $("#redes > div").height();
 			var contactoAltoOrig = $("#contacto_rap > div").height();
+			<? } ?>
 
 		if($(window).width() > 767){
 			resizeFooter();
@@ -127,7 +129,7 @@
 			var scripts = document.getElementsByTagName("script");
 			for(var i = 0; i<scripts.length; i++){
 				if (scripts[i].src){
-					console.log(i,scripts[i].src);
+					//console.log(i,scripts[i].src);
 					
 				}
 			}

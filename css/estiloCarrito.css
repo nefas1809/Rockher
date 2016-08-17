@@ -21,7 +21,7 @@ th{
 	font-size: 22px;
 	font-weight: normal !important;
 }
-dt, dd, td > span, div.quantity > input{
+dt, dd, td > span, div.quantity > input, .woocommerce-Price-amount{
 	font-family: "Futura", Fallback, sans-serif;
 	font-size: 20px;
 	font-style: italic;
@@ -29,6 +29,15 @@ dt, dd, td > span, div.quantity > input{
 	text-transform: uppercase;
 	font-weight: normal !important;
 	opacity: .5;
+}
+
+ins{
+	text-decoration: none;
+}
+
+#precioTotal > strong > span{
+	opacity: 1;
+	font-style: normal;
 }
 
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt, .button.alt{

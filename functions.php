@@ -55,6 +55,15 @@ function wpbootstrap_scripts_with_jquery()
 		//}
 		
 		if(is_product()){
+			/*if(current_user_can("mayoristas" )){
+				//echo "<script>console.log('Es un mayorista, puede comprar mucho, mostrado en functions');</script>";	
+				wp_register_script( 'mayorista', get_template_directory_uri() . '/js/tallas_mayorista.js');
+				wp_enqueue_script( 'mayorista' );
+			}else{
+				//echo "<script>console.log('Es un minorista, puede comprar poco, mostrado en functions');</script>";
+				wp_register_script( 'menudeo', get_template_directory_uri() . '/js/mostrarColores.js');
+				wp_enqueue_script( 'menudeo' );
+			}
 			//removerScriptsProducto();
 			//add_action("wp_print_scripts","removerScriptsProducto" );
 			/*remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
@@ -67,6 +76,13 @@ function wpbootstrap_scripts_with_jquery()
 		}
 		if(is_product_category() || is_shop()){
 			wp_enqueue_style('loader');
+			wp_register_script( 'alerts', get_template_directory_uri() . '/js/sweetalert.min.js');
+			wp_register_style("alertStyle", get_template_directory_uri() . '/css/sweetalert.css' );
+			wp_enqueue_style('alertStyle');
+			wp_enqueue_script('alerts');
+
+			
+			
 			/*echo "<script>console.log('ESTO ES DESDE FUNCTIONS Y ESTAMOS EN CATEGORY O SHOP');</script>";
 			wp_enqueue_script( 'wc-add-to-cart', $frontend_script_path . 'add-to-cart' . $suffix . '.js' );
 			wp_enqueue_script('wc-add-to-cart-variation');

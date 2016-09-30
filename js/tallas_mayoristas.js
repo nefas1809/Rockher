@@ -2,6 +2,13 @@
 clearModal();
 var arrayTallas = ["Tallas_ninas", "Tallas_damas", "Tallas_bebe","Tallas_extras", "Tallas_ninas_y_extras", "Tallas_damas_y_extras"];
 var tipoTalla;
+var arrayColores = [];
+var arrayTallasCirculos = [];
+var arrayEstilos = [];
+var selectEstilo = false;
+var selectColor = false;
+
+console.log("Mostrando tallas para mayoristas");
 $("#myModal").find($("#productInfoCantidad")).css("display","none");
 $('table.variations > tbody > tr').each(function(){
 	var label = $(this).children(':first-child').find('label').text();
@@ -10,12 +17,15 @@ $('table.variations > tbody > tr').each(function(){
 	if(label === 'Colores'){
 
 		$(this).children(':nth-child(2)').find('select > option').each(function(index){
+			var valor = $(this).text();
+			arrayColores.push(valor);
 			if(index != 0){
-				var valor = $(this).text();
+				
 				var color = $(this).val();
 
 				//console.log('Color: '+color+" index: "+index+" value: "+valor);
 				if($('div#colores').find('#'+valor).length <= 0){
+					//arrayColores.push(valor);
 					$('div#colores').append("<div class='circle circle-color' style='background-color: #"+color+";' id='"+valor+"'></div>");
 				}
 				
@@ -27,14 +37,16 @@ $('table.variations > tbody > tr').each(function(){
 		tipoTalla = label.toLowerCase();
 		console.log("Es talla: "+label+" y tipoTalla: "+tipoTalla);
 		$(this).children(':nth-child(2)').find('select > option').each(function(index2){
+			var color = $(this).text();
+			arrayTallasCirculos.push(color);
 			if(index2 != 0){
-				var color = $(this).text();
+				//var color = $(this).text();
 				var valor = $(this).val();
 
 				console.log('Talla: '+label+' , '+color+" index: "+index2+" value: "+valor);
 				var divTallas = $("#myModal").find($('div#tallas'));
 				if($(divTallas).find('#'+color).length <= 0){
-					$(divTallas).append("<div><div class='circle circle-talla' style='background-color: "+color+"';' id='"+valor+"'><span class='center-text'>"+color+"</span></div><input type='number' step='1' min='0' value='0' class='input-text qty text inputTalla'></div>");
+					$(divTallas).append("<div class='div-talla'><div class='circle circle-talla' style='background-color: "+color+"';' id='"+valor+"'><span class='center-text'>"+color+"</span></div><input type='number' step='1' min='0' value='0' class='input-text qty text inputTalla'></div>");
 				}
 				
 				
@@ -46,13 +58,15 @@ $('table.variations > tbody > tr').each(function(){
 
 	}else if(label === "Estilos"){
 		$(this).children(':nth-child(2)').find('select > option').each(function(index3){
+			var color = $(this).text();
+			arrayEstilos.push(color);
 			if(index3 != 0){
-				var color = $(this).text();
+				
 				var valor = $(this).val();
 
 				console.log('Estilo: '+color+" index: "+index3+" value: "+valor);
 				if($('div#estilos').find('#'+valor).length <= 0){
-					$('div#estilos').append("<div class='col-md-3'><div class='img-estilo' id='"+valor+"'><i class='fa fa-check-circle' aria-hidden='true'></i></div><span>"+valor+"</span></div>");
+					$('div#estilos').append("<div><div class='img-estilo' id='"+valor+"'><i class='fa fa-check-circle' aria-hidden='true'></i></div><span>"+valor+"</span></div>");
 				}
 				
 			}
@@ -62,8 +76,18 @@ $('table.variations > tbody > tr').each(function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
 var array = new Array();
-$("div.circle-color").click(function(){
+$("#colores").on("click",".circle-color",function(){
 	$("div.circle-color").empty();
 	$(this).append('<i class="fa fa-check" aria-hidden="true" style="color:#E7E7E7;"></i>');
 	//$("#cantidad > form").find("#pa_colores option:selected").removeAttr("selected");
@@ -90,6 +114,10 @@ $("div.circle-color").click(function(){
 	//$("#cantidad > form").find("#pa_colores").val(array[this.id]).attr("selected","selected").change();
 	$("#pa_colores").val(array[this.id]).attr("selected","selected").change();
 	setPrecio();
+	recargar_estilos($( "#pa_estilos option:selected" ).val());
+	recargar_tallas($( "#pa_"+tipoTalla+" option:selected" ).val());
+	mostrarBotonLimpiar(true);
+	selectColor = true;
 	//$("#pa_colores option[text='"+texto+"'").attr("selected", "selected").change();
 	/*$("#pa_colores option").each(function(){
 		if($(this).text() === texto){
@@ -121,7 +149,8 @@ function setPrecio(){
 	}
 }
 
-/*$("div.circle-talla").click(function(){
+$("#tallas").on("click",".circle-talla",function(){
+	
 	$("div.circle-talla").css({"background-color":"#fff", "color":"#cccccc"});
 	$("div.circle-talla > span").css("color","#cccccc");
 	$(this).css({"background-color":"#cccccc", "color":"#fff"});
@@ -131,14 +160,39 @@ function setPrecio(){
 		$(this).removeAttr("selected").change();
 	});
 	$("#pa_"+tipoTalla).val(this.id).attr("selected","selected").change();
+	recargar_colores($( "#pa_colores option:selected" ).text());
+	recargar_estilos($( "#pa_estilos option:selected" ).val());
 	//$("#cantidad > form").find("#tallas").val(this.id).attr("selected","selected").change();
 	setPrecio();
+	mostrarBotonLimpiar(true);
 	console.log();
 
 	
+});
+
+$("#estilos").on("click",".img-estilo",clickEstilo);
+/*{
+	
+	/*$("div.img-estilo").css("opacity",".5");
+	$("div.img-estilo > i").css("opacity","0");
+	$(this).css("opacity","1")
+	$(this).find("i").css("opacity","1");
+	//$("#cantidad > form").find("#tallas option").each(function(){
+	$("#pa_estilos option").each(function(){
+		$(this).removeAttr("selected").change();
+	});
+	$("#pa_estilos").val(this.id).attr("selected","selected").change();
+	recargar_colores();
+	setPrecio();
+	//$("#cantidad > form").find("#tallas").val(this.id).attr("selected","selected").change();
+	/*console.log($("#productInfoImg").find("div.summary .woocommerce-Price-amount").text());
+	$("#precio h4").text($("#productInfoImg").find("div.summary .woocommerce-variation-price").text()+" MXN");
 });*/
 
-$("div.img-estilo").click(function(){
+function clickEstilo(e){
+	e.preventDefault();
+	var that = $(this);
+	that.off("click");
 	$("div.img-estilo").css("opacity",".5");
 	$("div.img-estilo > i").css("opacity","0");
 	$(this).css("opacity","1")
@@ -148,30 +202,40 @@ $("div.img-estilo").click(function(){
 		$(this).removeAttr("selected").change();
 	});
 	$("#pa_estilos").val(this.id).attr("selected","selected").change();
+	that.on("click",clickEstilo);
+	recargar_colores($( "#pa_colores option:selected" ).text());
+	recargar_tallas($( "#pa_"+tipoTalla+" option:selected" ).val());
 	setPrecio();
-	//$("#cantidad > form").find("#tallas").val(this.id).attr("selected","selected").change();
-	/*console.log($("#productInfoImg").find("div.summary .woocommerce-Price-amount").text());
-	$("#precio h4").text($("#productInfoImg").find("div.summary .woocommerce-variation-price").text()+" MXN");*/
-});
+	mostrarBotonLimpiar(true);
+	selectEstilo = true;
+}
+
+
 
 
 function clearModal(){
 	$('div#colores').empty();
 	$('div#tallas').empty();
+	$("div#estilos").empty();
 
 }
 
-$("#agregar > a").click(function(e){
+//$("#agregar > a").off("click");
+
+/*$("#agregar > a").click(function(e){
 	console.log("Presiono el de añadir al carro mayorista");
 	e.preventDefault();
 	addToCart();
+	$("#agregar > a").off("click");
 	//$("#myModal").find("button.single_add_to_cart_button").click();
 
 	
-});
+});*/
+$("#agregar > a").on('click',addToCart);
 
-function addToCart(){
+/*function addToCart(){
 	var espera = 1000;
+	$("#opaco").css("z-index","9999999999").show();
 	$("#myModal").find($(".inputTalla")).each(function(index){
 		var elemento = $(this);
 		var valor = $(this).val();
@@ -194,10 +258,252 @@ function addToCart(){
 	});
 	
 	
+}*/
+
+function addToCart(e){
+	e.preventDefault();
+	var that = $(this);
+	that.off("click");
+	var espera = 1000;
+	var tiempo_opaco = 0;
+	var contador = 1;
+	var al_menos_un_producto = false;
+	$("#opaco").css("z-index","9999999999");
+	var total_input = $("#myModal").find($(".inputTalla")).length;
+	console.log("Total: "+total_input);
+
+	if(!selectEstilo){
+		sweetAlert("Oops...", "Necesitas seleccionar un estilo de prenda!", "error");
+		that.on("click",addToCart);
+	}else if(!selectColor){
+		sweetAlert("Oops...", "Necesitas seleccionar un color de prenda!", "error");
+		that.on("click",addToCart);
+	}else{
+		$("#myModal").find($(".inputTalla")).each(function(index){
+			var valor = $(this).val();
+			if(valor > 0){
+				tiempo_opaco += (1000*contador);
+			}
+		});
+
+
+
+		$("#myModal").find($(".inputTalla")).each(function(index){
+			var elemento = $(this);
+			var valor = $(this).val();
+			
+			//setTimeout(function(){
+	              
+			
+			if(valor > 0){
+				al_menos_un_producto = true;
+				setTimeout(function(){
+					$("#opaco").show();
+					console.log("valor del input "+index+": "+valor);
+					var id = $(elemento).parent().children(':first-child').attr("id");
+					console.log("El id del elemento a agregar: "+id);
+					$("#pa_"+tipoTalla).val(id).attr("selected","selected").change();
+					$("#myModal").find("div.quantity > input").val(valor).change();
+					$("#myModal").find("button.single_add_to_cart_button").click();
+				},espera);
+				espera += 1000;
+				$("#opaco").css("display","none");
+				
+				
+				
+			}
+	    	//},espera);
+	    	//espera += 1000;
+	    	
+			
+		});
+		setTimeout(function(){
+			$("#opaco").css("z-index","10");
+			$("#opaco").hide();
+			if(al_menos_un_producto){
+				//alert("Producto(s) agregado(s)");
+				swal("Productos agregados al carrito!", "", "success");
+				selectEstilo = false; selectColor = false;
+			}else{
+				sweetAlert("Oops...", "No indicaste la cantidad de prendas!", "error");
+			}
+			that.on("click",addToCart);
+		},tiempo_opaco);
+
+	}
+	
+	
+	
 }
+
+/*function recargar_colores(){
+	var temp = [];
+	$("#pa_colores option").each(function(){
+		var color = $(this).val();
+		temp.push(color);
+	});
+	if(arrayColores.length != temp.length){
+		console.log("debo recargargar los colores, han cambiado los combos");
+		console.log("Tamaño de arrayColores: "+arrayColores.length+" y tamaño de temp: "+temp.length);
+		$('div#colores').empty();
+		$("#pa_colores option").each(function(index){
+			if(index != 0){
+				var valor = $(this).text();
+				var color = $(this).val();
+				if($('div#colores').find('#'+valor).length <= 0){
+					//arrayColores.push(valor);
+					$('div#colores').append("<div class='circle circle-color' style='background-color: #"+color+";' id='"+valor+"'></div>");
+				}
+			}
+		});
+		arrayColores = temp;
+	}
+
+}*/
+
+function recargar_colores($idColor){
+	/*var temp = [];
+	$("#pa_colores option").each(function(){
+		var color = $(this).val();
+		temp.push(color);
+	});
+	if(arrayColores.length != temp.length){
+		console.log("debo recargargar los colores, han cambiado los combos");
+		console.log("Tamaño de arrayColores: "+arrayColores.length+" y tamaño de temp: "+temp.length);
+		*/
+		$('div#colores').empty();
+
+		$("#pa_colores option").each(function(index){
+			if(index != 0){
+				var valor = $(this).text();
+				var color = $(this).val();
+				if($('div#colores').find('#'+valor).length <= 0){
+					//arrayColores.push(valor);
+					$('div#colores').append("<div class='circle circle-color' style='background-color: #"+color+";' id='"+valor+"'></div>");
+				}
+			}
+		});
+		$("#"+$idColor).append('<i class="fa fa-check" aria-hidden="true" style="color:#E7E7E7;"></i>');
+		
+		/*arrayColores = temp;
+	}*/
+
+}
+
+function recargar_tallas($idTalla){
+	/*var temp = [];
+	$("#pa_"+tipoTalla+"  option").each(function(){
+		var color = $(this).val();
+		temp.push(color);
+	});
+	if(arrayTallasCirculos.length != temp.length){
+		console.log("debo recargargar las tallas, han cambiado los combos");
+		console.log("Tamaño de arrayTallasCirculos: "+arrayTallasCirculos.length+" y tamaño de temp: "+temp.length);
+		*/
+		$('div#tallas').empty();
+		$("#pa_"+tipoTalla+"  option").each(function(index){
+			if(index != 0){
+				var color = $(this).text();
+				var valor = $(this).val();
+				if($('div#tallas').find('#'+color).length <= 0){
+					$('div#tallas').append("<div class='div-talla'><div class='circle circle-talla' style='background-color: "+color+"';' id='"+valor+"'><span class='center-text'>"+color+"</span></div><input type='number' step='1' min='0' value='0' class='input-text qty text inputTalla'></div>");
+				}
+			}
+		});
+	$("div.circle-talla").css({"background-color":"#fff", "color":"#cccccc"});
+	$("div.circle-talla > span").css("color","#cccccc");
+	$("#"+$idTalla).css({"background-color":"#cccccc", "color":"#fff"});
+	$("#"+$idTalla).find("span").css("color","#fff");
+		/*
+		arrayTallasCirculos = temp;
+	}*/
+
+}
+
+
+function recargar_estilos($idEstilo){
+	/*var temp = [];
+	$("#pa_estilos  option").each(function(){
+		var color = $(this).val();
+		temp.push(color);
+	});
+	if(arrayEstilos.length != temp.length){
+		console.log("debo recargargar los estilos, han cambiado los combos");
+		console.log("Tamaño de arrayEstilos: "+arrayEstilos.length+" y tamaño de temp: "+temp.length);
+		*/
+		$('div#estilos').empty();
+		$("#pa_estilos option").each(function(index){
+			if(index != 0){
+				var color = $(this).text();
+				var valor = $(this).val();
+				if($('div#estilos').find('#'+valor).length <= 0){
+				$('div#estilos').append("<div class='col-md-3'><div class='img-estilo' id='"+valor+"'><i class='fa fa-check-circle' aria-hidden='true'></i></div><span>"+valor+"</span></div>");
+			}
+			}
+		});
+		$("div.img-estilo").css("opacity",".5");
+		$("div.img-estilo > i").css("opacity","0");
+		$("#"+$idEstilo).css("opacity","1")
+		$("#"+$idEstilo).find("i").css("opacity","1");
+		/*
+		arrayEstilos = temp;
+	}*/
+	/*$('div#estilos').empty();
+	$("#pa_estilos option").each(function(index){
+		if(index != 0){
+			var valor = $(this).text();
+			var estilo = $(this).val();
+			
+		}
+	});*/
+
+}
+
+function mostrarBotonLimpiar($visible){
+	if($visible){
+		$("div#reiniciar").show();	
+	}else{
+		$("div#reiniciar").hide();
+	}
+	
+}
+
+
+
+$("div#reiniciar > a").click(function(e){
+	e.preventDefault();
+	$(".reset_variations").click();
+	mostrarBotonLimpiar(false);
+	recargar_colores();
+	recargar_tallas();
+	recargar_estilos();
+	$("div.img-estilo").css("opacity",".5");
+	$("div.img-estilo > i").css("opacity","0");
+	$("div.circle-talla").css({"background-color":"#fff", "color":"#cccccc"});
+	$("div.circle-talla > span").css("color","#cccccc");
+	$("div.circle-color").empty();
+	$(".inputTalla").val(0);
+	selectEstilo = false; selectColor = false;
+});
 
 /*function crearCirculoTalla($talla, $contenedor){
 	$(contenedor).append("<div class='col-md-3'><div class='img-estilo' id='"+talla+"'><i class='fa fa-check-circle' aria-hidden='true'></i></div><span>"+talla+"</span></div>");
 }*/
 
+$("#pa_colores").change(function(){
+	var idColor = $( "#pa_colores option:selected" ).text();
+	console.log("ELEMENTO DE COLOR SELECCIONADO: "+idColor);
+	recargar_colores(idColor);
+});
 
+$("#pa_"+tipoTalla).change(function(){
+	var idTalla = $( "#pa_"+tipoTalla+" option:selected" ).val();
+	console.log("ELEMENTO DE LA TALLA SELECCIONADO: "+idTalla);
+	recargar_tallas(idTalla);
+});
+
+$("#pa_estilos").change(function(){
+	var idEstilo = $( "#pa_estilos option:selected" ).val();
+	console.log("ELEMENTO DE COLOR SELECCIONADO: "+idEstilo);
+	recargar_estilos(idEstilo);
+});

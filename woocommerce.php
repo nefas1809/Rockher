@@ -1,7 +1,7 @@
 
 <?php get_header(); 
 if(!is_product()){
-
+	$mayorista = current_user_can("mayoristas" );
 ?>
 
 
@@ -43,7 +43,7 @@ if(!is_product()){
 
 
 </div>
-<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal"><!--INICIA EL MODAL-->
   <div class="modal-dialog container">
     <div class="modal-content row">
       <!--<div class="modal-header">
@@ -57,21 +57,31 @@ if(!is_product()){
         	</div>
         	
         	<div id="contentInfo" class="col-md-12">
-        		<div id="productInfoImg" class="col-lg-4 col-sm-12">
+        		<div id="productInfoImg" class="col-lg-3 col-sm-12">
         		<img src="" alt="">
         		</div>
-        		<div id="productInfoEstilo" class="col-lg-4 col-sm-6">
+        		<div id="productInfoEstilo" class="col-lg-3 col-sm-6">
         			<h3 id="productInfoEstiloH2">Estilo de prenda</h3>
 
         			<!--<img src="<? bloginfo('template_directory'); ?>/img/4.png" alt="">-->
-        			<div id="estilos" class="col-md-12">
+        			<div id="estilos" class="">
         				
         			</div>
         		</div>
-        		<div id="productInfoExtras" class="col-lg-4 col-sm-6">
+        		<div id="productInfoExtras" class="col-lg-3 col-sm-6">
         			<div id="precio">
         				<h4></h4>
+        				<? global $mayorista;
+        					if($mayorista){
+        				?>
+        				<span>Mayoreo</span>
+        				<?
+        					}else{
+        				?>
         				<span>Menudeo</span>
+        				<?		
+        					}
+        				?>
         			</div>
         			<div id="productInfoColores">
         				<span>Colores</span>
@@ -85,12 +95,21 @@ if(!is_product()){
 	        	
 	        			</div>
         			</div>
+        			<?
+					if(!current_user_can("mayoristas" )){
+					?>
         			<div id="productInfoCantidad">
         				<span>Cantidad</span>
 	        			<div id="cantidad">
 	        				<input type="number" step="1" min="1" value="1">
 	        			</div>
 	        		</div>
+	        		<?
+	        		}
+	        		?>
+	        		<div id="reiniciar" style="display:none;">
+        				<a class="button alt" href="">Reiniciar valores</a>
+        			</div>
         			<div id="agregar">
         				<a href=""><img src="<? bloginfo('template_directory') ?>/img/agregarCarrito.png" alt=""></a>
         			</div>
@@ -101,7 +120,7 @@ if(!is_product()){
       
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+</div><!--TERMINA EL MODAL-->
 
 
 <div id="getProducto" style="display:none;">
@@ -136,65 +155,7 @@ if(!is_product()){
 
 
 </div>
-<div class="modal fade" tabindex="-1" role="dialog" id="myModalProd">
-  <div class="modal-dialog container">
-    <div class="modal-content row">
-      <!--<div class="modal-header">
-        
-      </div>-->
-      <div class="modal-body row" id="showDetails">
-        <div id="productInfo row">
-        	<div style="display:flex;">
-        		<h2 id="productInfoH2"></h2>
-        		<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--><i id="i-cerrarDetalles" class="fa fa-times close" data-dismiss="modal" aria-label="Close" aria-hidden="true" style="font-size: 32px;"></i><!--</button>-->
-        	</div>
-        	
-        	<div id="contentInfo" class="col-md-12">
-        		<div id="productInfoImg" class="col-lg-4 col-sm-12">
-        		<img src="" alt="">
-        		</div>
-        		<div id="productInfoEstilo" class="col-lg-4 col-sm-6">
-        			<h3 id="productInfoEstiloH2">Estilo de prenda</h3>
 
-        			<!--<img src="<? bloginfo('template_directory'); ?>/img/4.png" alt="">-->
-        			<div id="estilos" class="col-md-12">
-        				
-        			</div>
-        		</div>
-        		<div id="productInfoExtras" class="col-lg-4 col-sm-6">
-        			<div id="precio">
-        				<h4></h4>
-        				<span>Menudeo</span>
-        			</div>
-        			<div id="productInfoColores">
-        				<span>Colores</span>
-        				<div id="colores">
-	        				
-	        			</div>
-        			</div>
-        			<div id="productInfoTallas">
-        				<span>Tallas</span>
-	        			<div id="tallas">
-	        	
-	        			</div>
-        			</div>
-        			<div id="productInfoCantidad">
-        				<span>Cantidad</span>
-	        			<div id="cantidad">
-	        				<input type="number" step="1" min="1" value="1">
-	        			</div>
-	        		</div>
-        			<div id="agregarProd">
-        				<a href=""><img src="<? bloginfo('template_directory') ?>/img/agregarCarrito.png" alt=""></a>
-        			</div>
-        		</div>
-        	</div>
-        </div>
-      </div>
-      
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
 
 
 <div id="getProducto" style="display:none;">
@@ -225,6 +186,7 @@ $(document).ready(function(){
 <?
 	if(is_product_category()){
 ?>
+		//window.alert = function() {};
 		var scriptMayorista = false;
 		var divModal = $("#myModal");
 		//console.log("MODAL: "+divModal.html());
@@ -275,9 +237,9 @@ $(document).ready(function(){
 				       $('#showDetails').find("#commentform").remove();
 				       $('#showDetails').find("div.woocommerce-tabs").remove();
 				       $('#showDetails').find("div.product_meta").remove();
-				       $('#showDetails').find("table.variations").hide();
+//				       $('#showDetails').find("table.variations").hide();
 				       $('#showDetails').find("h1.product_title").hide();
-				       $('#showDetails').find("form.variations_form").hide();
+//				       $('#showDetails').find("form.variations_form").hide();
 				       $('#showDetails').find("div.summary").hide();
 				       var titulo = $("#showDetails").find("h1.product_title").text();
 				       //var cantidad = $("#showDetails").find("div.quantity > input").appendTo("div#cantidad");
@@ -324,17 +286,18 @@ $(document).ready(function(){
 
 
 				       
-				       <?
-						if(!current_user_can("mayoristas" )){
-						?>
+				       <? global $mayorista;
+        					if(!$mayorista){
+        				?>
 				       		$.getScript('<? bloginfo('template_directory')?>/js/mostrarColores.js');
 				       	<?
 				       	}else{
 				       	?>
-				       		if(scriptMayorista == false){
-				       			scriptMayorista = true;
+				       		//if(scriptMayorista == false){
+				       			//scriptMayorista = true;
 				       			$.getScript('<? bloginfo('template_directory')?>/js/tallas_mayoristas.js');
-				       		}
+				       			//$("#myModal").find($("#productInfoCantidad").hide());
+				       		//}
 				       		
 
 				       	<?	
@@ -413,13 +376,15 @@ console.log("hoooooooooooooliii");
 		$("#productInfoImg").find("div.images > a > img").each(function(){
 			$(this).removeAttr("width");
 			$(this).removeAttr("height");
-			$(this).css("width","100%");
+			//$(this).css("width","50%");
+			$(this).addClass("img_myModal");
 		});
 <?  } ?>
 $('#myModal').on('hidden.bs.modal', function () {
     		//$('div#tallas').empty();
     		//$('div#colores').empty();
     		clearModal();
+    		$('#showDetails').find($('#productInfoImg')).html("");
 		});
 
 <?

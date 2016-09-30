@@ -185,6 +185,7 @@ div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.co
 }
 #productInfoExtras{
 	margin-top: 50px;
+	/*padding: 0px 70px 0px 70px;*/
 }
 #productInfoExtras span{
 	font-family: "Abreu", Fallback, sans-serif;
@@ -210,7 +211,7 @@ div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.co
 }
 #tallas,#colores{
 	display: flex;
-	flex-flow: row;
+	flex-flow: row wrap;
 	justify-content: center;
 	margin-top: 15px;
 }
@@ -319,6 +320,9 @@ div.contenedorProducto > a > h3 , div.contenedorProducto > a> span.price, div.co
 
 #estilos{
 	text-transform: uppercase;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
 }
 
 #celfie{
@@ -389,7 +393,35 @@ div.modal-dialog{
 }*/
 .inputTalla{
 	width: 100%;
+	background-color: #eee;
+	border:none;
+	width: 60px;
+	height: 30px;
+	text-align: center;
+	font-family: "Futura", Fallback, sans-serif;
+	font-size: 20px;
+	font-style: italic;
+	color:#323232;
+	text-transform: uppercase;
+	font-weight: normal !important;
+	opacity: .5;
 }
-#tallas > div{
-	
+
+
+.img_myModal{
+	width: 80%;
+}
+
+.div-talla{
+	display: flex;
+	flex-flow: column;
+	justify-content: center;
+	align-items: center;
+	/*flex-basis: 25%;*/
+	margin-bottom: 30px;
+	margin-right: 10px;
+}
+
+#reiniciar{
+	margin-bottom: 30px;
 }
